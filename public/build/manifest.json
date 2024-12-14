@@ -1,0 +1,50 @@
+{
+  "resources/js/app.js": {
+    "file": "assets/app-DLXkxiZ3.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/js/websockets.js": {
+    "file": "assets/websockets-DBNS55NJ.js",
+    "name": "websockets",
+    "src": "resources/js/websockets.js",
+    "isEntry": true
+  }, 
+  "resources/css/app.css": {
+    "file": "assets/app-DM6lPmjB.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/panel.css": {
+    "file": "assets/panel.css",
+    "src": "resources/css/panel.css",
+    "isEntry": true
+  },
+  "resources/css/tareas.css": {
+    "file": "assets/tareas.css",
+    "src": "resources/css/tareas.css",
+    "isEntry": true
+  },
+  "resources/css/detailed-task.css": {
+    "file": "assets/detailed-task.css",
+    "src": "resources/css/detailed-task.css",
+    "isEntry": true
+  },
+  "resources/css/detailed-customer.css": {
+    "file": "assets/detailed-customer.css",
+    "src": "resources/css/detailed-customer.css",
+    "isEntry": true
+  },
+  "resources/css/customers.css": {
+    "file": "assets/customers.css",
+    "src": "resources/css/customers.css",
+    "isEntry": true
+  },
+  "resources/css/admin.css": {
+    "file": "assets/admin.css",
+    "src": "resources/css/admin.css",
+    "isEntry": true
+  }
+
+}

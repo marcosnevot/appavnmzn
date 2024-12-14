@@ -1,0 +1,1568 @@
+.header-tareas {
+    display: flex;
+    justify-content: space-between;
+    /* Espaciado entre los elementos */
+    align-items: center;
+
+}
+
+.header-tareas h2 {
+    margin: 0;
+    padding: 0px 10px;
+    /* Asegura que no haya margen extra en el h2 */
+}
+
+.header-tareas .btn-new-task {
+    margin-left: auto;
+    /* Alinea el botón a la derecha */
+}
+
+/* Contenedor de las acciones a la derecha */
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* Espacio entre el select y el botón */
+    width: 100%;
+    margin-left: 50px;
+}
+
+.actions-space {
+    flex-grow: 1;
+    /* Ocupa todo el espacio disponible entre los elementos */
+}
+
+/* Estilo general del panel informativo de los filtros aplicados */
+.filter-info-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: #f4f4f9;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    height: 60px;
+    max-height: 60px;
+
+    /* Altura fija */
+    overflow-y: auto;
+    /* Scrollbar vertical cuando el contenido exceda la altura */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    color: #374151;
+}
+
+/* Hover para destacar */
+.filter-info-panel:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo del contenido dentro del panel */
+.filter-info-content p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.5;
+    word-break: break-word;
+    /* Asegura que el texto largo no rompa el diseño */
+}
+
+.filter-info-content p strong {
+    color: #111827;
+    font-weight: 600;
+}
+
+
+/* Ocultar el panel cuando no hay filtros */
+.hide {
+    display: none;
+}
+
+/* Contenedor para el label y el select, ambos dentro de un bloque */
+.sort-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    /* Para que tenga la misma altura que el botón */
+    align-items: left;
+    width: 170px;
+}
+
+/* Estilos del label de ordenar por, centrado */
+.sort-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-align: left;
+}
+
+/* Estilos del select */
+.sort-select {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f7f7f7;
+    color: #333;
+    height: 40px;
+    /* Misma altura que el botón */
+    transition: border-color 0.3s ease;
+}
+
+.sort-select:hover,
+.sort-select:focus {
+    border-color: #4A90E2;
+    outline: none;
+}
+
+/* Estilos del botón de nueva tarea */
+.btn-new-task {
+    padding: 12px 20px;
+    background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+    /* Gradiente de grises oscuros */
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid #151515;
+    /* Borde un poco más oscuro para definición */
+    border-radius: 8px;
+    /* Bordes ligeramente redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra suave para dar profundidad */
+    transition: all 0.2s ease-in-out;
+    /* Transiciones suaves */
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-new-task:hover {
+    background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
+    /* Gradiente más claro en hover */
+    border-color: #333333;
+    /* Borde más claro */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    /* Sombra más profunda */
+    transform: translateY(-2px);
+    /* Efecto de elevación en hover */
+}
+
+.btn-new-task:active {
+    border-color: #1e1e1e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Sombra reducida en clic */
+    transform: translateY(0);
+    /* Vuelve a su posición original */
+}
+
+
+
+.btn-excel {
+    background-color: #f3f4f6;
+    /* Fondo claro para un look profesional */
+    border: 1px solid #d1d5db;
+    /* Borde ligero para delinear */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    padding: 8px;
+    /* Espaciado interno */
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    /* Efecto de transición */
+    display: inline-flex;
+    /* Alinear el contenido */
+    align-items: center;
+    /* Centrar la imagen */
+}
+
+.btn-excel img {
+    width: 36px;
+    /* Ajuste del tamaño del ícono */
+    height: auto;
+    display: block;
+}
+
+/* Efecto al pasar el ratón */
+.btn-excel:hover {
+    background-color: #e5e7eb;
+    /* Fondo más oscuro en hover */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    /* Sombra suave */
+}
+
+/* Efecto al hacer clic */
+.btn-excel:active {
+    background-color: #d1d5db;
+    /* Fondo ligeramente más oscuro en clic */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    /* Sombra reducida en clic */
+}
+
+/* Indicador de orden ascendente */
+th.sorted-asc::after {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-left: 6px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 7px solid #ffffff;
+    /* Triángulo hacia arriba */
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+/* Indicador de orden descendente */
+th.sorted-desc::after {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-left: 6px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 7px solid #ffffff;
+    /* Triángulo hacia abajo */
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+/* Indicador sin efecto adicional */
+th::after {
+    opacity: 1;
+}
+
+
+
+
+
+/* Estilo general de la notificación */
+.notification {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-weight: 500;
+    z-index: 7003;
+    opacity: 0;
+    /* Inicialmente invisible */
+    visibility: hidden;
+    /* Oculta visualmente pero permite transiciones */
+    transition: top 0.7s ease, opacity 0.7s ease;
+    /* Transición de entrada y opacidad */
+    color: white;
+}
+
+.notification .notification-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification .notification-icon {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.notification .notification-message {
+    font-weight: bold;
+}
+
+.notification .notification-timer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: width 3s linear;
+}
+
+.notification.show {
+    top: 20px;
+    /* Aparece deslizándose desde arriba */
+    opacity: 1;
+    visibility: visible;
+    /* Se vuelve visible */
+}
+
+.notification.hide {
+    top: 20px;
+    /* Mantener la posición al desaparecer */
+    opacity: 0;
+    /* Solo se desvanece */
+    visibility: hidden;
+    /* Oculta después de la transición */
+    transition: opacity 0.7s ease;
+    /* Solo opacidad cambia en la salida */
+}
+
+/* Tipos de notificación con diferentes colores */
+.notification.success {
+    background-color: #28a745;
+}
+
+.notification.error {
+    background-color: #dc3545;
+}
+
+.notification.info {
+    background-color: #17a2b8;
+}
+
+.notification.warning {
+    background-color: #ffc107;
+}
+
+
+/* Establece ancho específico para la columna de Cliente */
+.col-cliente {
+    width: 20%;
+    /* Ajusta el porcentaje según el espacio necesario */
+    max-width: 200px;
+    min-width: 180px;
+    /* Controla el ancho mínimo */
+    word-wrap: break-word;
+    /* Permite ajuste de texto dentro de la celda */
+}
+
+.col-descripcion,
+.col-observaciones {
+    max-width: 250px;
+    /* Define el ancho máximo */
+    width: 250px;
+    /* Establece un ancho proporcional para evitar que se fusionen */
+    min-width: 250px;
+    max-height: 4.5em;
+    /* Limita la altura máxima */
+    overflow: hidden;
+    /* Oculta contenido excedente */
+    text-overflow: ellipsis;
+    /* Añade puntos suspensivos */
+    -webkit-line-clamp: 3;
+    /* Limita a 3 líneas */
+    -webkit-box-orient: vertical;
+    /* Configura orientación en vertical */
+    line-height: 1.5em;
+    /* Establece el interlineado */
+    word-wrap: break-word;
+    /* Ajusta palabras largas */
+}
+
+th[data-field] input {
+    width: 200px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+[id$="-mirrored"] {
+    background-color: #1E1E1E;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    max-width: 200px;
+    /* Ajusta según necesidad */
+    max-height: 300px;
+    /* Para limitar el tamaño */
+    overflow-y: auto;
+    /* Habilitar scroll si es necesario */
+}
+
+/* Estilo inicial del contenedor */
+/* Estado inicial del contenedor */
+.autocomplete-container {
+    transform: translateY(-10px);
+    /* Reducido y desplazado hacia arriba */
+    visibility: hidden;
+    /* Oculto para evitar interacción */
+    transition: transform 0.3s ease;
+    /* Animaciones suaves */
+}
+
+/* Estado visible del contenedor */
+.autocomplete-container.show {
+    transform: translateY(0);
+    /* Tamaño completo y en su posición */
+    visibility: visible;
+    /* Interactuable */
+}
+
+
+
+
+
+.estado-pendiente {
+    background-color: rgba(255, 248, 225, 0.8) !important;
+    /* Amarillo con opacidad */
+}
+
+.estado-enespera {
+    background-color: rgba(227, 242, 253, 0.8) !important;
+    /* Azul con opacidad */
+}
+
+.estado-completada {
+    background-color: rgba(232, 245, 233, 0.8) !important;
+    /* Verde con opacidad */
+}
+
+.estado-planificada {
+    background-color: rgba(249, 249, 249, 0.8) !important;
+    /* Gris claro */
+}
+
+.estado-default {
+    background-color: rgba(249, 249, 249, 0.8) !important;
+    /* Gris claro */
+}
+
+.estado-default {
+    background-color: rgba(249, 249, 249, 0.8) !important;
+    /* Gris claro */
+}
+
+
+
+/* Estilos del formulario de tarea */
+.task-form {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 30px;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    transform: translateY(100%);
+    transition: transform 0.4s ease-in-out;
+    display: none;
+    opacity: 0;
+}
+
+.task-form.show {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.task-form.hide {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.form-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    background-color: #F7F7F7;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #333333;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Ajuste general de los campos */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-size: 15px;
+    color: #333333;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px 12px;
+    height: 40px;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    background-color: #F7F7F7;
+    color: #333333;
+    transition: border-color 0.3s ease;
+}
+
+.form-group textarea {
+    height: 60px;
+    resize: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #4A90E2;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Distribución de los campos en cada fila */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1 1 auto;
+    margin-bottom: 25px;
+
+    /* Deja que el ancho sea automático si no hay un `flex-basis` definido */
+}
+
+/* Estilo específico para .row1 */
+.form-group.row1 {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 33%;
+    box-sizing: border-box;
+}
+
+.form-group.grow {
+    flex-grow: 1;
+    min-width: 200px;
+    /* Ajuste mínimo si es necesario */
+}
+
+.form-group.narrow {
+    flex: 0 0 auto;
+    display: flex;
+}
+
+.form-group.time {
+    width: 5%;
+    /* Ajusta el valor según el ancho deseado */
+    display: inline-block;
+    /* Para mantenerlos en una línea, si lo deseas */
+    box-sizing: border-box;
+}
+
+
+
+
+/* Asignación de porcentaje de ancho uniforme a los campos por fila */
+/* Fila 1: Cliente, Asunto, Tipo, Subtipo, Estado */
+.form-row.fila-1 .cliente,
+.form-row.fila-1 .asunto {
+
+    /* Asignamos 30% a Cliente y Asunto */
+    width: 200px;
+}
+
+.form-row.fila-1 .tipo,
+.form-row.fila-1 .subtipo,
+.form-row.fila-1 .estado {
+    flex-basis: 5%;
+    /* Asignamos 10% a Tipo, Subtipo y Estado */
+}
+
+/* Fila 2: Asignado a, Archivo, Descripción, Observaciones */
+.form-row.fila-2 .form-group {
+    flex-basis: 25%;
+    /* Cambia este valor para personalizar cada campo */
+}
+
+.user-checkbox {
+    flex-basis: 10%;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.custom-select {
+    height: 40px;
+
+}
+
+/* Fila 3: Facturable, Facturado, Precio, Suplido, Coste */
+.form-row.fila-3 .form-group {
+    flex-basis: 20%;
+    /* Cambia este valor para personalizar cada campo */
+}
+
+/* Fila 4: Fecha Inicio, Vencimiento, Imputación, Tiempo Previsto, Tiempo Real */
+.form-row.fila-4 .form-group {
+    flex-basis: 20%;
+    /* Cambia este valor para personalizar cada campo */
+}
+
+/* Ajustar los botones */
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.btn-submit,
+.btn-close,
+.btn-clear {
+    padding: 10px 25px;
+    height: 40px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.btn-submit {
+    background-color: #1E1E1E;
+    color: white;
+}
+
+.btn-submit:hover {
+    background-color: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-clear {
+    background-color: #356fdc;
+    /* Color rojo para cancelar */
+    color: white;
+}
+
+.btn-clear:hover {
+    background-color: #2c58b8;
+    /* Un tono más oscuro en hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.btn-close {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-close:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-close:active {
+    background-color: #b21f2d;
+}
+
+/* Para pantallas más pequeñas */
+@media (max-width: 1024px) {
+    .form-row {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+    }
+}
+
+
+
+.cliente-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    display: none;
+    z-index: 1000;
+}
+
+.cliente-list li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.cliente-list li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Estilo para el contenedor del campo de búsqueda */
+.autocomplete {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.autocomplete-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+/* Estilo para la lista desplegable */
+.autocomplete-list {
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 0 0 4px 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    margin-top: -5px;
+    list-style-type: none;
+    padding: 0;
+    display: none;
+}
+
+/* Estilo para los elementos de la lista */
+.autocomplete-list li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.autocomplete-list li:last-child {
+    border-bottom: none;
+}
+
+/* Estilo al hacer hover sobre una opción o cuando está activa */
+.autocomplete-list li.active,
+.autocomplete-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.selected-items-container {
+    display: flex;
+    flex-wrap: nowrap;
+    /* Mantener todos los elementos en una línea */
+    gap: 8px;
+    /* Espaciado entre elementos */
+    padding: 5px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: #f4f4f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    /* Fijo, igual al ancho del contenedor padre */
+    max-width: 100%;
+    /* No superar el ancho del input */
+    overflow-x: auto;
+    /* Activar barra de scroll horizontal */
+    overflow-y: hidden;
+    /* Sin scroll vertical */
+    white-space: nowrap;
+    /* No permitir que el texto haga wrap */
+    box-sizing: border-box;
+    margin-top: 5px;
+    min-height: 40px;
+}
+
+.selected-item {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 3px 8px;
+    border-radius: 15px;
+    font-size: 12px;
+    line-height: 1.5;
+    border: 1px solid #ddd;
+    display: inline-flex;
+    align-items: center;
+    margin: 2px;
+    /* Espaciado entre ítems */
+}
+
+.selected-item button {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 12px;
+    margin-left: 5px;
+    cursor: pointer;
+    line-height: 1;
+    /* Alineación del botón */
+}
+
+.selected-item button:hover {
+    color: #f87171;
+    /* Rojo claro para hover */
+}
+
+
+
+
+
+.highlight {
+    font-weight: bold;
+    color: #007bff;
+    /* Puedes elegir el color que mejor se adapte a tu diseño */
+}
+
+#cliente-info {
+    color: #666;
+    font-style: italic;
+    margin-left: 5px;
+}
+
+/* Estilos del Modal */
+.modal {
+    display: none;
+    /* Oculto por defecto */
+    position: fixed;
+    z-index: 6000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo semitransparente */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-actions .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-confirm {
+    background-color: #28a745;
+    /* Color verde para confirmar */
+    color: white;
+}
+
+.btn-confirm:hover {
+    background-color: #218838;
+}
+
+
+
+.btn-cancel {
+    background-color: #dc3545;
+    /* Color rojo para cancelar */
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #c82333;
+}
+
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 0.2em;
+}
+
+
+/* Seleccionar usuarios asignados a la tarea*/
+.custom-select {
+    border: 1px solid #ccc;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    border-radius: 4px;
+}
+
+.dropdown-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-list li {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Personalización del checkbox */
+.custom-checkbox {
+    appearance: none;
+    /* Elimina el estilo predeterminado del navegador */
+    -webkit-appearance: none;
+    width: 14px;
+    /* Ajuste para un tamaño más pequeño */
+    height: 14px;
+    /* Ajuste para un tamaño más pequeño */
+    border: 1px solid #666;
+    border-radius: 3px;
+    background-color: white;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.custom-checkbox:checked {
+    background-color: #4285f4;
+    border-color: #4285f4;
+}
+
+/* Hover and focus states */
+.dropdown-list li:hover,
+.dropdown-list li:focus-within {
+    background-color: #f0f0f0;
+}
+
+/* Para los usuarios seleccionados */
+.selected-users {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.selected-users span {
+    background-color: #e0e0e0;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.selected-estados,
+.selected-subtipos,
+.selected-facturados,
+.selected-facturables {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.selected-estados .chip,
+.selected-subtipos .chip,
+.selected-facturados .chip,
+.selected-facturables .chip {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    line-height: 1.5;
+    border: 1px solid #ddd;
+}
+
+.selected-estados .chip:hover,
+.selected-subtipos .chip:hover,
+.selected-facturados .chip:hover,
+.selected-facturables .chip:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+.placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+
+
+/* Contenedor general para la paginación */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    /* Centrar los controles en el medio */
+    margin: 12px 0;
+    /* Espaciado superior e inferior */
+}
+
+/* Lista de elementos de la paginación */
+.pagination {
+    list-style: none;
+    /* Eliminar los puntos de las listas */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    /* Colocar los elementos en línea */
+    gap: 10px;
+    /* Espacio entre los botones de paginación */
+}
+
+/* Estilos generales de los botones de paginación */
+.pagination li {
+    display: inline-block;
+}
+
+.pagination li button {
+    border: none;
+    padding: 10px 15px;
+    /* Espaciado dentro del botón */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    background-color: #f7f7f7;
+    /* Fondo suave */
+    color: #333;
+    /* Texto oscuro */
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    transition: background-color 0.3s, box-shadow 0.3s;
+    /* Animaciones suaves */
+}
+
+/* Botones de paginación activos */
+.pagination li.active button {
+    background-color: #4A90E2;
+    /* Color azul activo */
+    color: white;
+    /* Texto blanco */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Sombra más profunda */
+}
+
+/* Efecto hover en los botones */
+.pagination li button:hover {
+    background-color: #e6e6e6;
+    /* Fondo más oscuro en hover */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    /* Sombra más pronunciada en hover */
+}
+
+/* Botones deshabilitados (como "Anterior" cuando estás en la primera página) */
+.pagination li.disabled button {
+    background-color: #ccc;
+    /* Fondo gris */
+    color: #999;
+    /* Texto gris */
+    cursor: not-allowed;
+    /* Cursor deshabilitado */
+    box-shadow: none;
+    /* Sin sombra */
+}
+
+
+/* Planificación Input */
+
+.planificacion-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+    backdrop-filter: blur(8px);
+    transition: background-color 0.3s ease;
+}
+
+
+#planificacion-buttons {
+    display: flex;
+    gap: 1px;
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+.btn-planificacion {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    background: rgba(240, 240, 240, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-left: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Estilo para el botón de "Pasadas" cuando está activo */
+.btn-pasadas.active-red {
+    background-color: red !important;
+    color: white !important;
+}
+
+.btn-pasadas:not(.active-red):hover {
+    background: rgba(220, 80, 80, 0.1) !important;
+    color: #bf3a3a !important;
+    box-shadow: inset 0 3px 6px rgba(220, 80, 80, 0.3) !important;
+}
+
+
+
+
+
+
+.btn-planificacion:hover {
+    background: rgba(80, 100, 220, 0.1);
+    color: #3a6abf;
+    box-shadow: inset 0 3px 6px rgba(80, 100, 220, 0.3);
+}
+
+.btn-planificacion.active {
+    background: linear-gradient(135deg, #4f80e2, #3a6abf);
+    color: #ffffff;
+    box-shadow: inset 0 4px 10px rgba(40, 80, 160, 0.4);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+#planificacion-buttons .btn-planificacion:first-child {
+    border-radius: 30px 0 0 30px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+#planificacion-buttons .btn-planificacion:last-child {
+    border-radius: 0 30px 30px 0;
+}
+
+#planificacion {
+    width: 20%;
+}
+
+/* Ajuste para el campo de fecha para que coincida con los botones */
+input[type="date"].planificacion-date-picker {
+    padding: 10px 15px;
+    border: 1px solid #d1d9e0;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    background-color: #e1e8ed;
+    color: #333333;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    appearance: none;
+    margin-left: 8px;
+    height: 42px;
+
+}
+
+input[type="date"].planificacion-date-picker:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background-color: #c9d6e1;
+}
+
+
+
+/* Contenedor de los botones de planificación */
+
+/* Contenedor de Filtro Rápido */
+.quick-filter-planificacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+    backdrop-filter: blur(8px);
+    transition: background-color 0.3s ease;
+}
+
+/* Contenedor de botones - estilo de grupo */
+.planificacion-buttons-container {
+    display: flex;
+    gap: 1px;
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+/* Botones de Filtro - Profesional */
+.btn-filter-planificacion {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    background: rgba(240, 240, 240, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-left: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Botones de bordes redondeados */
+.planificacion-buttons-container .btn-filter-planificacion:first-child {
+    border-radius: 30px 0 0 30px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.planificacion-buttons-container .btn-filter-planificacion:last-child {
+    border-radius: 0 30px 30px 0;
+}
+
+/* Estados de Hover y Active */
+.btn-filter-planificacion:hover {
+    background: rgba(80, 100, 220, 0.1);
+    color: #3a6abf;
+    box-shadow: inset 0 3px 6px rgba(80, 100, 220, 0.3);
+}
+
+.btn-filter-planificacion.active {
+    background: linear-gradient(135deg, #4f80e2, #3a6abf);
+    color: #ffffff;
+    box-shadow: inset 0 4px 10px rgba(40, 80, 160, 0.4);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.hours-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #f4f4f9;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 1px 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hours-summary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hours-summary p {
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #374151;
+}
+
+.hours-summary strong {
+    color: #111827;
+    font-weight: 600;
+}
+
+.hours-summary span {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2563eb;
+    margin-left: 8px;
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.hours-summary span.updated {
+    color: #059669;
+    font-size: 20px;
+    animation: highlight 0.5s ease-in-out;
+}
+
+.professional-hours-panel {
+    display: flex;
+    /* Organización en fila */
+    justify-content: space-between;
+    /* Espaciado entre los elementos */
+    align-items: center;
+    /* Alineación vertical */
+    position: fixed;
+    /* Fijo para mantenerlo visible en la pantalla */
+    bottom: 20px;
+    /* Alineado con la parte inferior de la pantalla */
+    right: 70px;
+    /* Alineado con el borde derecho */
+    background-color: #ffffff;
+    /* Fondo blanco profesional */
+    border: 2px solid #d1d5db;
+    /* Borde sutil */
+    border-radius: 12px;
+    /* Esquinas redondeadas */
+
+    padding: 10px 10px;
+    /* Espaciado interno */
+    max-width: 900px;
+    /* Ancho máximo */
+    z-index: 1000;
+    /* Para que esté siempre visible sobre otros elementos */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* Animaciones suaves */
+    gap: 20px;
+    /* Espaciado entre los elementos */
+}
+
+
+
+.professional-hours-panel .hours-item {
+    display: flex;
+    /* Elementos en línea dentro de cada bloque */
+    align-items: center;
+    /* Alineación vertical */
+    gap: 5px;
+    /* Espaciado entre texto y número */
+    font-family: "Inter", sans-serif;
+    /* Fuente moderna */
+    font-size: 14px;
+    /* Tamaño del texto */
+    line-height: 1.5;
+    /* Altura de las líneas */
+    color: #374151;
+    /* Color del texto */
+}
+
+.professional-hours-panel .hours-item strong {
+    color: #111827;
+    /* Color del texto más oscuro */
+    font-weight: 600;
+    /* Negrita */
+}
+
+.professional-hours-panel .hours-item span {
+    font-size: 18px;
+    /* Tamaño del número */
+    font-weight: 700;
+    /* Negrita */
+    color: #2563eb;
+    /* Azul profesional */
+}
+
+
+
+.hidden {
+    display: none;
+}
+
+
+
+@keyframes highlight {
+    0% {
+        background-color: #d1fae5;
+    }
+
+    100% {
+        background-color: transparent;
+    }
+}
+
+/* Adaptabilidad para dispositivos pequeños */
+@media (max-width: 768px) {
+    .hours-summary {
+        width: 100%;
+        padding: 12px 16px;
+        margin: 12px 0;
+    }
+
+    .hours-summary p {
+        font-size: 14px;
+    }
+
+    .hours-summary span {
+        font-size: 16px;
+    }
+}
+
+/* Ajustes generales para dispositivos grandes */
+@media (max-width: 1200px) {
+    .header-tareas h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn-new-task {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+
+    .filter-info-panel {
+        width: 300px;
+    }
+
+    /* Oculta el contenedor de ordenar */
+    .sort-container {
+        display: none;
+    }
+}
+
+/* Ajustes para pantallas medianas */
+@media (max-width: 992px) {
+    .actions {
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .filter-info-panel {
+        width: 270px;
+    }
+
+    .quick-filter-planificacion {
+        margin-bottom: 10px;
+        order: 1;
+    }
+
+    .btn-filter-planificacion {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+
+    /* Ocultar botones menos importantes de planificación */
+    .planificacion-buttons-container .btn-filter-planificacion:nth-child(5),
+    .planificacion-buttons-container .btn-filter-planificacion:nth-child(6) {
+        display: none;
+    }
+
+    /* Ocultar el panel de información de filtros */
+    #filter-info-panel {
+        display: none;
+    }
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .actions {
+        gap: 5px;
+        justify-content: flex-end;
+    }
+
+    .filter-info-panel {
+        display: none;
+    }
+
+    .btn-new-task,
+    #filter-task-button {
+        width: auto;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    /* Ocultar más botones de planificación */
+    .planificacion-buttons-container .btn-filter-planificacion:nth-child(4),
+    .planificacion-buttons-container .btn-filter-planificacion:nth-child(5) {
+        display: none;
+    }
+
+    .pagination-container {
+        padding: 10px;
+    }
+}
+
+/* Ajustes para pantallas extra pequeñas */
+@media (max-width: 576px) {
+    .header-tareas {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quick-filter-planificacion {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+
+    .quick-filter-planificacion {
+        display: none;
+    }
+
+    .btn-filter-planificacion {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .btn-submit,
+    .btn-clear,
+    .btn-close {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+/* Ajustes específicos para móviles muy pequeños */
+@media (max-width: 480px) {
+
+
+    .form-container {
+        padding: 15px;
+    }
+
+    .filter-info-panel {
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 13px;
+    }
+
+    .quick-filter-planificacion {
+        display: none;
+    }
+
+    .actions {
+        justify-content: center;
+    }
+
+    /* Mantener los botones principales visibles en el centro */
+    .btn-new-task,
+    #filter-task-button {
+        width: auto;
+        margin: 5px 0;
+        font-size: 0.8rem;
+    }
+}

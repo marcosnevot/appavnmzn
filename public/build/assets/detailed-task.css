@@ -1,0 +1,312 @@
+/* Estilos para el modal de tareas detalladas */
+.task-detail-modal {
+    display: none;
+    /* Oculto por defecto */
+    position: fixed;
+    z-index: 2000;
+    left: 50%;
+    /* Centrado horizontalmente */
+    top: 50%;
+    /* Centrado verticalmente */
+    transform: translate(-50%, -50%);
+    /* Centrar tanto vertical como horizontalmente */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo oscuro semitransparente */
+    width: 100vw;
+    /* Ancho completo de la pantalla */
+    height: 100vh;
+    /* Alto completo de la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    /* Suave transición en opacidad */
+
+}
+
+
+/* Contenido del modal */
+.task-detail-modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    /* Ancho máximo del modal */
+    width: 100%;
+    text-align: left;
+    /* Alinear el texto a la izquierda */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transform: translateY(20px);
+    /* Desplazamiento inicial hacia abajo */
+    opacity: 0;
+    /* Inicialmente invisible */
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    /* Suave transición para desvanecerse y moverse */
+}
+
+/* Estado visible del modal */
+.task-detail-modal.show {
+    opacity: 1;
+    /* Hacer el fondo visible */
+}
+
+.task-detail-modal-content.show {
+    transform: translateY(0);
+    /* Mover hacia su posición normal */
+    opacity: 1;
+    /* Hacer visible */
+}
+
+/* Estado oculto */
+.task-detail-modal.hide {
+    opacity: 0;
+    /* Volver a invisible */
+}
+
+.task-detail-modal-content.hide {
+    transform: translateY(20px);
+    /* Mover hacia abajo al cerrar */
+    opacity: 0;
+    /* Volver a invisible */
+}
+
+/* Estilo del botón de cerrar debajo del modal */
+.btn-close-task-detail-modal {
+    display: block;
+    /* Asegura que sea un bloque */
+    width: 10%;
+    /* Botón ocupa todo el ancho */
+    text-align: center;
+    /* Centrar el texto */
+    padding: 10px 20px;
+    margin-top: 15px;
+    /* Separación respecto al contenido */
+    background-color: #1e1e1e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-close-task-detail-modal:hover {
+    background-color: rgb(66, 66, 66)
+}
+
+
+
+
+/* General modal styles */
+.task-detail-modal-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estilo para el header del modal */
+.task-detail-modal-header {
+    padding: 20px;
+    background-color: #f3f4f6;  /* Fondo claro */
+    border-bottom: 2px solid #e0e0e0; /* Separador suave */
+    text-align: center; /* Centrar el contenido */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05); /* Sombra ligera */
+    border-radius: 8px 8px 0 0; /* Redondear los bordes superiores */
+}
+
+/* Estilo general para el título */
+.task-detail-title {
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* Estilo para el Asunto */
+.task-title {
+    display: block;
+    font-size: 24px;
+    color: #2c3e50; /* Azul oscuro */
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+}
+
+/* Estilo para el Cliente */
+.task-client {
+    display: block;
+    font-size: 18px;
+    color: #7f8c8d; /* Gris oscuro para diferenciarlo del Asunto */
+    margin-top: 5px; /* Separación del asunto */
+    text-transform: capitalize;
+}
+
+/* Estilo de hover (opcional) */
+.task-title:hover, .task-client:hover {
+    color: #2980b9; /* Un azul más vibrante */
+}
+
+/* Descripción integrada dentro del header */
+.task-description {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #555; /* Color gris moderado */
+    font-style: italic; /* Itálico para dar énfasis pero mantener un look limpio */
+    line-height: 1.5;
+    padding: 0 10px;
+    border-top: 1px solid #e0e0e0; /* Línea sutil de separación */
+    padding-top: 10px;
+}
+
+/* Estilo del texto de la descripción */
+.task-detail-description p {
+    margin: 0;
+    line-height: 1.6;
+    font-style: italic;  /* Añadir estilo itálico para resaltar la descripción */
+}
+
+/* Contenedor para la información de contacto, manteniendo ambos elementos centrados */
+.task-client-contact {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 40px; /* Espacio uniforme entre el teléfono y el email */
+    margin-top: 10px;
+    font-size: 16px;
+    color: #34495e;
+}
+
+/* Ajustes individuales para teléfono y email dentro de un contenedor de ancho mínimo */
+.task-client-contact-item {
+    min-width: 100px; /* Ajuste mínimo para uniformidad de espacio */
+    text-align: center;
+}
+
+/* Estilo para el teléfono */
+.task-client-phone {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+/* Estilo para el email */
+.task-client-email {
+    font-weight: 400;
+    color: #7f8c8d;
+    text-decoration: none;
+}
+
+/* Efecto hover para el email */
+.task-client-email:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .task-title {
+        font-size: 20px;
+    }
+    .task-client {
+        font-size: 16px;
+    }
+    .task-description {
+        font-size: 14px;
+    }
+    .task-client-contact {
+        font-size: 14px;
+    }
+}
+
+
+
+/* Estilos para la sección de botones */
+.task-detail-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+/* Botones de acción (Editar, Borrar) */
+.btn-task-action {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #38444d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#delete-task-button {
+    background-color: #f44336;
+    /* Rojo para borrar */
+}
+
+.btn-task-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para la sección de subtareas (futura implementación) */
+.task-subtasks-section {
+    margin-top: 30px;
+    padding: 20px;
+    border-top: 2px solid #f0f0f0;
+    text-align: center;
+}
+
+.task-subtasks-section h3 {
+    font-size: 20px;
+    color: #555555;
+    margin-bottom: 10px;
+}
+
+.task-subtasks-section p {
+    font-size: 16px;
+    color: #777777;
+}
+
+
+/* Tooltip styling */
+.client-tooltip {
+    position: absolute;
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 4000;
+}
+
+.client-tooltip::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #f1f1f1 transparent;
+}
+
+
+/* Cuando el tooltip está visible */
+.client-tooltip.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
