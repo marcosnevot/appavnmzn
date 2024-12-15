@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const sessionUserId = document.getElementById('user-session-id').value;
 
     // Cargar tareas inicialmente
-    loadTasks(1, 'fecha_planificacion', 'asc');
+    loadTasks(1, 'created_at', 'desc');
 
 
 
@@ -259,26 +259,25 @@ function loadInitialTasks(tasks) {
         row.classList.add(estadoClass);
 
         row.innerHTML = `
-        <td>${task.id}</td>
-        <td>${task.fecha_vencimiento ? new Date(task.fecha_vencimiento).toLocaleDateString() : 'Sin fecha'}</td>
-        <td>
-        ${task.fecha_planificacion ? formatFechaPlanificacion(task.fecha_planificacion) : 'Sin fecha'}
-        </td> 
-        <td>${task.users && task.users.length > 0 ? task.users.map(user => user.name).join(', ') : 'Sin asignación'}</td>
-        <td>${task.cliente ? task.cliente.nombre_fiscal : 'Sin cliente'}</td>
-        <td>${task.asunto ? task.asunto.nombre : 'Sin asunto'}</td>
-        <td class="col-descripcion">${task.descripcion ? truncateText(task.descripcion, 100) : ''}</td>
-        <td class="col-observaciones">${task.observaciones ? truncateText(task.observaciones, 100) : ''}</td>
-        <td>${task.facturable ? 'Sí' : 'No'}</td>
-        <td>${task.facturado || 'No facturado'}</td>
-        <td>${task.estado}</td>
-        <td>${task.tiempo_previsto || 'N/A'}</td>
-        <td>${task.tiempo_real || 'N/A'}</td>
-        <td>${task.tipo ? task.tipo.nombre : 'Sin tipo'}</td>
-        <td>${task.subtipo || ''}</td>
-        <td>${task.fecha_inicio ? new Date(task.fecha_inicio).toLocaleDateString() : 'Sin fecha'}</td>
-
-    `;
+            <td>${task.id}</td>
+            <td>${task.fecha_inicio ? new Date(task.fecha_inicio).toLocaleDateString() : 'Sin fecha'}</td>
+            <td>${task.asunto ? task.asunto.nombre : 'Sin asunto'}</td>
+            <td>${task.cliente ? task.cliente.nombre_fiscal : 'Sin cliente'}</td>
+            <td>${task.tipo ? task.tipo.nombre : 'Sin tipo'}</td>
+            <td>${task.estado || 'Sin estado'}</td>
+            <td>${task.fecha_vencimiento ? new Date(task.fecha_vencimiento).toLocaleDateString() : 'Sin fecha'}</td>
+            <td>${task.facturable ? 'SI' : 'NO'}</td>
+            <td>${task.facturado || 'NO'}</td>
+            <td class="col-descripcion">${task.descripcion ? truncateText(task.descripcion, 100) : ''}</td>
+            <td class="col-observaciones">${task.observaciones ? truncateText(task.observaciones, 100) : ''}</td>
+            <td>${task.suplido ? task.suplido : 'N/A'}</td>
+            <td>${task.coste ? task.coste : 'N/A'}</td>
+            <td>${task.precio ? task.precio : 'N/A'}</td>
+            <td>
+            ${task.fecha_planificacion ? formatFechaPlanificacion(task.fecha_planificacion) : 'Sin fecha'}
+            </td> 
+            <td>${task.users && task.users.length > 0 ? task.users.map(user => user.name).join(', ') : 'Sin asignación'}</td>
+        `;
         tableBody.appendChild(row);
 
         // Añadir el evento de doble clic a las filas de la tabla

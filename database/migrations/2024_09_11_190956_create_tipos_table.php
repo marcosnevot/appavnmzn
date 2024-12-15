@@ -22,11 +22,32 @@ return new class extends Migration
 
         // Insertar opciones iniciales
         DB::table('tipos')->insert([
-            ['nombre' => 'FISCAL'],
-            ['nombre' => 'CONTABLE'],
+            ['nombre' => 'HACIENDA'],
             ['nombre' => 'LABORAL'],
-            ['nombre' => 'COMUNIDADES'],
-            ['nombre' => 'FIRMAS'],
+            ['nombre' => 'MUTUA'],
+            ['nombre' => 'SEGURIDAD SOCIAL'],
+            ['nombre' => 'AYUNTAMIENTO'],
+            ['nombre' => 'DGA'],
+            ['nombre' => 'INE'],
+            ['nombre' => 'ADMINISTRATIVO'],
+            ['nombre' => 'INMOBILIARIO'],
+            ['nombre' => 'DGA VIVIENDA'],
+            ['nombre' => 'NOTARIAL'],
+            ['nombre' => 'DPH'],
+            ['nombre' => 'REGISTRO PROPIEDAD'],
+            ['nombre' => 'FNMT'],
+            ['nombre' => 'MINISTERIO INTERIOR'],
+            ['nombre' => 'DGA JUEGO'],
+            ['nombre' => 'EXTRANJERIA'],
+            ['nombre' => 'REGISTRO PROP.'],
+            ['nombre' => 'contrato privado'],
+            ['nombre' => 'RED'],
+            ['nombre' => 'MUTUA FREMAP'],
+            ['nombre' => 'GOBIERNO DE ARAGON'],
+            ['nombre' => 'AEAT'],
+            ['nombre' => 'FREMAP'],
+            ['nombre' => 'REGISTRO MERCANTIL'],
+            ['nombre' => 'INSS'],
         ]);
     }
 

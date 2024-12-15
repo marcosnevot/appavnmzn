@@ -53,6 +53,24 @@
                 </div>
             </div>
 
+            
+
+
+
+        </div>
+
+        <!-- Fila 2: Asignado a, Archivo, Facturable, Facturado  -->
+        <div class="form-row" >
+
+
+            <div class="form-group grow" style="display: none;">
+                <label for="subtipo">Subtipo:</label>
+                <select name="subtipo" id="subtipo">
+                    <option value="ORDINARIA">Ordinaria</option>
+                    <option value="EXTRAORDINARIA">Extraordinaria</option>
+                </select>
+            </div>
+
             <div class="form-group narrow">
                 <label for="facturable">Facturable:</label>
                 <input type="checkbox" name="facturable" id="facturable" value="1" checked>
@@ -66,87 +84,6 @@
                     <option value="NUNCA">NUNCA</option>
                 </select>
             </div>
-
-
-
-        </div>
-
-        <!-- Fila 2: Asignado a, Archivo, Facturable, Facturado  -->
-        <div class="form-row" style="display: none;">
-
-
-            <div class="form-group grow">
-                <label for="subtipo">Subtipo:</label>
-                <select name="subtipo" id="subtipo">
-                    <option value="ORDINARIA">Ordinaria</option>
-                    <option value="EXTRAORDINARIA">Extraordinaria</option>
-                </select>
-            </div>
-
-
-
-
-
-            <div class="form-group narrow" style="display:none">
-                <label for="archivo">Archivo:</label>
-                <input type="text" name="archivo" id="archivo">
-            </div>
-
-            <div class="form-group time">
-                <label for="tiempo_previsto">Horas previstas:</label>
-                <input type="number" step="0.25" name="tiempo_previsto" id="tiempo_previsto">
-            </div>
-
-            <div class="form-group time">
-                <label for="tiempo_real">Horas reales:</label>
-                <input type="number" step="0.25" name="tiempo_real" id="tiempo_real">
-            </div>
-
-
-        </div>
-
-        <!-- Fila 3: Descripción, Observaciones Precio, Suplido, Coste -->
-        <div class="form-row">
-
-            <div class="form-group wide">
-                <label for="descripcion">Descripción:</label>
-                <textarea name="descripcion" id="descripcion" rows="2" s></textarea>
-            </div>
-
-            <div class="form-group wide">
-                <label for="observaciones">Observaciones:</label>
-                <textarea name="observaciones" id="observaciones" rows="2"></textarea>
-            </div>
-
-            <div class="form-group" style="display:none">
-                <label for="precio">Precio (€):</label>
-                <input type="number" step="0.01" name="precio" id="precio">
-            </div>
-
-            <div class="form-group" style="display:none">
-                <label for="suplido">Suplido (€):</label>
-                <input type="number" step="0.01" name="suplido" id="suplido">
-            </div>
-
-            <div class="form-group" style="display:none">
-                <label for="coste">Coste (€):</label>
-                <input type="number" step="0.01" name="coste" id="coste">
-            </div>
-        </div>
-
-        <!-- Fila 4: Fecha Inicio, Vencimiento, Imputación, Tiempo Previsto, Tiempo Real -->
-        <div class="form-row" style="margin-bottom:30px">
-
-            <div class="form-group grow">
-                <label for="fecha_inicio">Fecha de Inicio:</label>
-                <input type="date" name="fecha_inicio" id="fecha_inicio" value="{{ now()->format('Y-m-d') }}">
-            </div>
-
-            <div class="form-group grow">
-                <label for="fecha_vencimiento">Fecha de Vencimiento:</label>
-                <input type="date" name="fecha_vencimiento" id="fecha_vencimiento">
-            </div>
-
 
             <div class="form-group grow">
                 <label for="estado">Estado:</label>
@@ -178,6 +115,71 @@
                 </div>
                 <input type="hidden" name="users" id="user-ids"> <!-- Campo oculto para los IDs de usuarios seleccionados -->
             </div>
+
+
+            <div class="form-group narrow" style="display:none">
+                <label for="archivo">Archivo:</label>
+                <input type="text" name="archivo" id="archivo">
+            </div>
+
+            <div class="form-group time" style="display: none;">
+                <label for="tiempo_previsto">Horas previstas:</label>
+                <input type="number" step="0.25" name="tiempo_previsto" id="tiempo_previsto">
+            </div>
+
+            <div class="form-group time" style="display: none;">
+                <label for="tiempo_real">Horas reales:</label>
+                <input type="number" step="0.25" name="tiempo_real" id="tiempo_real">
+            </div>
+
+
+        </div>
+
+        <!-- Fila 3: Descripción, Observaciones Precio, Suplido, Coste -->
+        <div class="form-row">
+
+            <div class="form-group wide">
+                <label for="descripcion">Descripción:</label>
+                <textarea name="descripcion" id="descripcion" rows="2" s></textarea>
+            </div>
+
+            <div class="form-group wide">
+                <label for="observaciones">Observaciones:</label>
+                <textarea name="observaciones" id="observaciones" rows="2"></textarea>
+            </div>
+
+           
+        </div>
+
+        <!-- Fila 4: Fecha Inicio, Vencimiento, Imputación, Tiempo Previsto, Tiempo Real -->
+        <div class="form-row" style="margin-bottom:30px">
+
+            <div class="form-group grow ">
+                <label for="fecha_inicio">Fecha de Inicio:</label>
+                <input type="date" name="fecha_inicio" id="fecha_inicio" value="{{ now()->format('Y-m-d') }}">
+            </div>
+
+            <div class="form-group grow ">
+                <label for="fecha_vencimiento">Fecha de Vencimiento:</label>
+                <input type="date" name="fecha_vencimiento" id="fecha_vencimiento">
+            </div>
+
+            <div class="form-group time" >
+                <label for="precio">Precio (€):</label>
+                <input type="number" step="0.01" name="precio" id="precio">
+            </div>
+
+            <div class="form-group time">
+                <label for="suplido">Suplido (€):</label>
+                <input type="number" step="0.01" name="suplido" id="suplido">
+            </div>
+
+            <div class="form-group time">
+                <label for="coste">Coste (€):</label>
+                <input type="number" step="0.01" name="coste" id="coste">
+            </div>
+
+            
 
         </div>
 

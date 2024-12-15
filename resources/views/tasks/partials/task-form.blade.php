@@ -73,7 +73,7 @@
             </div>
 
 
-            <div class="form-group grow">
+            <div class="form-group grow" style="display: none;">
                 <label for="subtipo">Subtipo:</label>
                 <select name="subtipo" id="subtipo">
                     <option value="ORDINARIA">Ordinaria</option>
@@ -133,20 +133,7 @@
                 <textarea name="observaciones" id="observaciones" rows="2"></textarea>
             </div>
 
-            <div class="form-group" style="display:none">
-                <label for="precio">Precio (€):</label>
-                <input type="number" step="0.01" name="precio" id="precio">
-            </div>
-
-            <div class="form-group" style="display:none">
-                <label for="suplido">Suplido (€):</label>
-                <input type="number" step="0.01" name="suplido" id="suplido">
-            </div>
-
-            <div class="form-group" style="display:none">
-                <label for="coste">Coste (€):</label>
-                <input type="number" step="0.01" name="coste" id="coste">
-            </div>
+            
         </div>
 
         <!-- Fila 4: Fecha Inicio, Vencimiento, Imputación, Tiempo Previsto, Tiempo Real -->
@@ -167,14 +154,29 @@
                 <input type="date" name="fecha_imputacion" id="fecha_imputacion">
             </div>
 
-            <div class="form-group time">
+            <div class="form-group time"  style="display: none;">
                 <label for="tiempo_previsto">Horas previstas:</label>
                 <input type="number" step="0.25" name="tiempo_previsto" id="tiempo_previsto">
             </div>
 
-            <div class="form-group time">
+            <div class="form-group time"  style="display: none;">
                 <label for="tiempo_real">Horas reales:</label>
                 <input type="number" step="0.25" name="tiempo_real" id="tiempo_real">
+            </div>
+
+            <div class="form-group time">
+                <label for="precio">Precio (€):</label>
+                <input type="number" step="0.01" name="precio" id="precio">
+            </div>
+
+            <div class="form-group time">
+                <label for="suplido">Suplido (€):</label>
+                <input type="number" step="0.01" name="suplido" id="suplido">
+            </div>
+
+            <div class="form-group time">
+                <label for="coste">Coste (€):</label>
+                <input type="number" step="0.01" name="coste" id="coste">
             </div>
         </div>
 

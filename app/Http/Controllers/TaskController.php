@@ -33,7 +33,7 @@ class TaskController extends Controller
 
         // Obtener todas las tareas de la base de datos, ordenadas por las más recientes
         $tasks = Tarea::with(['cliente', 'asunto', 'tipo', 'users'])
-            ->orderBy('fecha_planificacion', 'asc') // Ordenar por la fecha de creación, de más reciente a más antigua
+            ->orderBy('created_at', 'desc') // Ordenar por la fecha de creación, de más reciente a más antigua
             ->get();
 
         // Obtener datos adicionales necesarios para el formulario
@@ -45,7 +45,7 @@ class TaskController extends Controller
         // Pasar las tareas y los datos adicionales a la vista
         return view('tasks.index', compact('tasks', 'clientes', 'asuntos', 'tipos', 'usuarios'));
     }
-    
+
     public function getTasks(Request $request)
     {
         try {
@@ -86,8 +86,6 @@ class TaskController extends Controller
 
 
 
-
-
             // Filtros dinámicos para múltiples valores
             foreach (['subtipo', 'facturado', 'estado'] as $filter) {
                 if (!empty($filters[$filter])) {
@@ -109,7 +107,7 @@ class TaskController extends Controller
             }
 
             // Filtros dinámicos para valores únicos
-            foreach (['precio', 'tiempo_previsto', 'tiempo_real'] as $filter) {
+            foreach (['precio', 'suplido', 'coste', 'tiempo_previsto', 'tiempo_real'] as $filter) {
                 if (!empty($filters[$filter])) {
                     $query->where($filter, $filters[$filter]);
                 }
@@ -228,19 +226,14 @@ class TaskController extends Controller
                 }
             }
 
-
-
             DB::enableQueryLog();
-
-
-
 
             // Incluir relaciones necesarias
             $query->with(['cliente', 'asunto', 'tipo', 'users']);
 
             if ($sortKey === '') {
-                $sortKey = 'fecha_planificacion';
-                $sortDirection = 'asc';
+                $sortKey = 'created_at';
+                $sortDirection = 'desc';
             }
 
             // Clonar el query para usarlo en el cálculo de totales
@@ -287,7 +280,7 @@ class TaskController extends Controller
 
         // Obtener todas las tareas de la base de datos, ordenadas por las más recientes
         $tasks = Tarea::with(['cliente', 'asunto', 'tipo', 'users'])
-            ->orderBy('fecha_planificacion', 'asc') // Ordenar por la fecha de creación, de más reciente a más antigua
+            ->orderBy('created_at', 'desc') // Ordenar por la fecha de creación, de más reciente a más antigua
             ->get();
 
         // Obtener datos adicionales necesarios para el formulario
@@ -308,7 +301,7 @@ class TaskController extends Controller
 
         // Obtener todas las tareas de la base de datos, ordenadas por las más recientes
         $tasks = Tarea::with(['cliente', 'asunto', 'tipo', 'users'])
-            ->orderBy('fecha_planificacion', 'asc') // Ordenar por la fecha de creación, de más reciente a más antigua
+            ->orderBy('created_at', 'desc') // Ordenar por la fecha de creación, de más reciente a más antigua
             ->get();
 
         // Obtener datos adicionales necesarios para el formulario
@@ -366,7 +359,7 @@ class TaskController extends Controller
             }
 
             // Filtros dinámicos para valores únicos
-            foreach (['precio', 'tiempo_previsto', 'tiempo_real'] as $filter) {
+            foreach (['precio', 'suplido', 'coste', 'tiempo_previsto', 'tiempo_real'] as $filter) {
                 if (!empty($filters[$filter])) {
                     $query->where($filter, $filters[$filter]);
                 }
@@ -524,8 +517,8 @@ class TaskController extends Controller
             $query->with(['cliente', 'asunto', 'tipo', 'users']);
 
             if ($sortKey === '') {
-                $sortKey = 'fecha_planificacion';
-                $sortDirection = 'asc';
+                $sortKey = 'created_at';
+                $sortDirection = 'desc';
             }
 
             // Evitar duplicados y ordenar
@@ -563,7 +556,7 @@ class TaskController extends Controller
 
         // Obtener todas las tareas de la base de datos, ordenadas por las más recientes
         $tasks = Tarea::with(['cliente', 'asunto', 'tipo', 'users'])
-            ->orderBy('fecha_planificacion', 'asc') // Ordenar por la fecha de creación, de más reciente a más antigua
+            ->orderBy('created_at', 'desc') // Ordenar por la fecha de creación, de más reciente a más antigua
             ->get();
 
         // Obtener datos adicionales necesarios para el formulario
@@ -636,7 +629,7 @@ class TaskController extends Controller
             }
 
             // Filtros dinámicos para valores únicos
-            foreach (['precio', 'tiempo_previsto', 'tiempo_real'] as $filter) {
+            foreach (['precio', 'suplido', 'coste', 'tiempo_previsto', 'tiempo_real'] as $filter) {
                 if (!empty($filters[$filter])) {
                     $query->where($filter, $filters[$filter]);
                 }
@@ -774,8 +767,8 @@ class TaskController extends Controller
             $query->with(['cliente', 'asunto', 'tipo', 'users']);
 
             if ($sortKey === '') {
-                $sortKey = 'fecha_planificacion';
-                $sortDirection = 'asc';
+                $sortKey = 'created_at';
+                $sortDirection = 'desc';
             }
 
             // Evitar duplicados y ordenar
@@ -1138,19 +1131,11 @@ class TaskController extends Controller
                 $query->whereDate('fecha_imputacion', '=', $filters['fecha_imputacion']);
             }
 
-
-            // Filtrar por precio
-            if (!empty($filters['precio'])) {
-                $query->where('precio', '=', $filters['precio']);
-            }
-
-            // Filtrar por tiempo previsto y tiempo real
-            if (!empty($filters['tiempo_previsto'])) {
-                $query->where('tiempo_previsto', '=', $filters['tiempo_previsto']);
-            }
-
-            if (!empty($filters['tiempo_real'])) {
-                $query->where('tiempo_real', '=', $filters['tiempo_real']);
+            // Filtros dinámicos para valores únicos
+            foreach (['precio', 'suplido', 'coste', 'tiempo_previsto', 'tiempo_real'] as $filter) {
+                if (!empty($filters[$filter])) {
+                    $query->where($filter, $filters[$filter]);
+                }
             }
 
             // Filtros específicos de planificación
@@ -1197,7 +1182,7 @@ class TaskController extends Controller
             $totalQuery = clone $query;
 
             // Añadir el orden por fecha de planificacion, de más antigua a más reciente
-            $query->distinct()->orderBy('fecha_planificacion', 'asc');
+            $query->distinct()->orderBy('created_at', 'desc');
 
 
             // Ejecutar la consulta y obtener las tareas filtradas
@@ -1238,22 +1223,25 @@ class TaskController extends Controller
         // Aplica los filtros a la consulta de tareas
         $query = Tarea::select([
             'id',
-            'fecha_vencimiento',
-            'fecha_planificacion',
-            'cliente_id',
+            'fecha_inicio',
             'asunto_id',
-            'descripcion',
-            'observaciones',
+            'cliente_id',
+            'tipo_id',
+            'estado',
+            'fecha_vencimiento',
             'facturable',
             'facturado',
-            'estado',
-            'tiempo_previsto',
-            'tiempo_real',
-            'tipo_id',
-            'subtipo',
-            'fecha_inicio',
+            'descripcion',
+            'observaciones',
+            'suplido',
+            'coste',
+            'precio',
+            'fecha_planificacion',
             'created_at'
         ])->with(['cliente', 'asunto', 'tipo', 'users']);
+
+
+
 
         // Filtrar por cliente (múltiples IDs)
         if (!empty($filters['cliente'])) {
@@ -1377,18 +1365,11 @@ class TaskController extends Controller
         }
 
 
-        // Filtrar por precio
-        if (!empty($filters['precio'])) {
-            $query->where('precio', '=', $filters['precio']);
-        }
-
-        // Filtrar por tiempo previsto y tiempo real
-        if (!empty($filters['tiempo_previsto'])) {
-            $query->where('tiempo_previsto', '=', $filters['tiempo_previsto']);
-        }
-
-        if (!empty($filters['tiempo_real'])) {
-            $query->where('tiempo_real', '=', $filters['tiempo_real']);
+        // Filtros dinámicos para valores únicos
+        foreach (['precio', 'suplido', 'coste', 'tiempo_previsto', 'tiempo_real'] as $filter) {
+            if (!empty($filters[$filter])) {
+                $query->where($filter, $filters[$filter]);
+            }
         }
 
         // Filtros específicos de planificación
@@ -1421,7 +1402,7 @@ class TaskController extends Controller
         }
 
         // Añadir el orden por fecha de creación, de más reciente a más antigua
-        $query->distinct()->orderBy('fecha_planificacion', 'asc');
+        $query->distinct()->orderBy('created_at', 'desc');
 
 
 

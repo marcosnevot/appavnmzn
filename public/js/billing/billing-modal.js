@@ -579,9 +579,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const rowToUpdate = document.querySelector(`tr[data-task-id="${task.id}"]`);
         if (rowToUpdate) {
-            const asunto = task.asunto ? task.asunto : rowToUpdate.querySelector('td:nth-child(5)').textContent;
+            const asunto = task.asunto ? task.asunto : rowToUpdate.querySelector('td:nth-child(3)').textContent;
             const cliente = task.cliente ? task.cliente : rowToUpdate.querySelector('td:nth-child(4)').textContent;
-            const tipo = task.tipo ? task.tipo : rowToUpdate.querySelector('td:nth-child(11)').textContent;
+            const tipo = task.tipo ? task.tipo : rowToUpdate.querySelector('td:nth-child(5)').textContent;
 
             // Añade una clase según el estado de la tarea
             const estadoClass = task.estado ? `estado-${task.estado.toLowerCase()}` : 'estado-default';
@@ -589,36 +589,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
             rowToUpdate.innerHTML = `
-                    <td>${task.id}</td>
-                    <td>${task.fecha_vencimiento ? new Date(task.fecha_vencimiento).toLocaleDateString() : 'Sin fecha'}</td>
-                    <td class="fecha-planificacion-cell" 
-                        data-fecha_planificacion="${task.fecha_planificacion || ''}" 
-                        data-task-id="${task.id}">
-                        ${task.fecha_planificacion ? formatFechaPlanificacion(task.fecha_planificacion) : 'Sin fecha'}
-                    </td>
-                    <td>${cliente}</td>
-                    <td>${asunto}</td>
-                    <td class="col-descripcion">${task.descripcion ? truncateText(task.descripcion, 100) : ''}</td>
-                     <td class="col-observaciones">${task.observaciones ? truncateText(task.observaciones, 100) : ''}</td>
-                    <td class="facturable-cell" 
-                        data-facturable="${task.facturable ? 'SI' : 'NO'}" 
-                        data-task-id="${task.id}">
-                        ${task.facturable ? 'SI' : 'NO'}
-                    </td>
-                    <td class="facturado-cell" 
-                        data-facturado="${task.facturado || 'NO'}" 
-                        data-task-id="${task.id}">
-                        ${task.facturado || 'NO'}
-                    </td>
-                    <td class="estado-cell" 
-                        data-estado="${task.estado || 'PENDIENTE'}" 
-                        data-task-id="${task.id}">
-                        ${task.estado || 'PENDIENTE'}
-                    </td>
-                    <td>${tipo}</td>
-                    <td>${task.fecha_inicio ? new Date(task.fecha_inicio).toLocaleDateString() : 'Sin fecha'}</td>  
-
-                `;
+                <td>${task.id}</td>
+                <td>${task.fecha_inicio ? new Date(task.fecha_inicio).toLocaleDateString() : 'Sin fecha'}</td>
+                <td>${asunto}</td>
+                <td>${cliente}</td>
+                <td>${tipo}</td>
+                <td class="estado-cell" 
+                    data-estado="${task.estado || 'PENDIENTE'}" 
+                    data-task-id="${task.id}">
+                    ${task.estado || 'PENDIENTE'}
+                </td>
+                <td>${task.fecha_vencimiento ? new Date(task.fecha_vencimiento).toLocaleDateString() : 'Sin fecha'}</td>
+                <td class="facturable-cell" 
+                    data-facturable="${task.facturable ? 'SI' : 'NO'}" 
+                    data-task-id="${task.id}">
+                    ${task.facturable ? 'SI' : 'NO'}
+                </td>
+                <td class="facturado-cell" 
+                    data-facturado="${task.facturado || 'NO'}" 
+                    data-task-id="${task.id}">
+                    ${task.facturado || 'NO'}
+                </td>
+                <td class="col-descripcion">${task.descripcion ? truncateText(task.descripcion, 100) : ''}</td>
+                <td class="col-observaciones">${task.observaciones ? truncateText(task.observaciones, 100) : ''}</td>
+                <td>${task.suplido ? task.suplido : '0.00'}</td>
+                <td>${task.coste ? task.coste : '0.00'}</td>
+                <td>${task.precio ? task.precio : '0.00'}</td>
+                <td class="fecha-planificacion-cell" 
+                    data-fecha_planificacion="${task.fecha_planificacion || ''}" 
+                    data-task-id="${task.id}">
+                    ${task.fecha_planificacion ? formatFechaPlanificacion(task.fecha_planificacion) : 'Sin fecha'}
+                </td>
+            <td>${task.users && task.users.length > 0 ? task.users.join(', ') : 'Sin asignación'}</td>
+            `;
 
 
         } else {

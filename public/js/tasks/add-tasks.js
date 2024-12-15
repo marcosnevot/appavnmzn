@@ -820,23 +820,24 @@ function updateTaskTable(tasks, isSingleTask = false, currentFilters = null, pag
 
         row.innerHTML = `
             <td>${task.id}</td>
-            <td>${task.fecha_vencimiento ? new Date(task.fecha_vencimiento).toLocaleDateString() : 'Sin fecha'}</td>
-            <td>
-            ${task.fecha_planificacion ? formatFechaPlanificacion(task.fecha_planificacion) : 'Sin fecha'}
-            </td>             
-            <td>${task.users && task.users.length > 0 ? task.users.map(user => user.name).join(', ') : 'Sin asignación'}</td>
+            <td>${task.fecha_inicio ? new Date(task.fecha_inicio).toLocaleDateString() : 'Sin fecha'}</td>
+            <td>${task.asunto ? task.asunto.nombre : 'Sin asunto'}</td>
             <td>${task.cliente ? task.cliente.nombre_fiscal : 'Sin cliente'}</td>
-                        <td>${task.asunto ? task.asunto.nombre : 'Sin asunto'}</td>
+            <td>${task.tipo ? task.tipo.nombre : 'Sin tipo'}</td>
+            <td>${task.estado || 'Sin estado'}</td>
+            <td>${task.fecha_vencimiento ? new Date(task.fecha_vencimiento).toLocaleDateString() : 'Sin fecha'}</td>
+            <td>${task.facturable ? 'SI' : 'NO'}</td>
+            <td>${task.facturado || 'NO'}</td>
             <td class="col-descripcion">${task.descripcion ? truncateText(task.descripcion, 100) : ''}</td>
             <td class="col-observaciones">${task.observaciones ? truncateText(task.observaciones, 100) : ''}</td>
-            <td>${task.facturable ? 'Sí' : 'No'}</td>
-            <td>${task.facturado || 'No'}</td>
-            <td>${task.estado}</td>
-            <td>${task.tiempo_previsto || 'N/A'}</td>
-            <td>${task.tiempo_real || 'N/A'}</td>
-            <td>${task.tipo ? task.tipo.nombre : 'Sin tipo'}</td>
-            <td>${task.subtipo || ''}</td>
-            <td>${task.fecha_inicio ? new Date(task.fecha_inicio).toLocaleDateString() : 'Sin fecha'}</td>
+            <td>${task.suplido ? task.suplido : 'N/A'}</td>
+            <td>${task.coste ? task.coste : 'N/A'}</td>
+            <td>${task.precio ? task.precio : 'N/A'}</td>
+            <td>
+            ${task.fecha_planificacion ? formatFechaPlanificacion(task.fecha_planificacion) : 'Sin fecha'}
+            </td> 
+            <td>${task.users && task.users.length > 0 ? task.users.map(user => user.name).join(', ') : 'Sin asignación'}</td>
+
         `;
 
         // Insertar la nueva fila al principio si es una tarea única (añadir tarea)
@@ -865,25 +866,24 @@ function updateSingleTaskRow(task) {
         // Si la fila ya existe, actualizar su contenido
         existingRow.innerHTML = `
             <td>${task.id}</td>
+            <td>${task.fecha_inicio ? new Date(task.fecha_inicio).toLocaleDateString() : 'Sin fecha'}</td>
             <td>${task.asunto ? task.asunto.nombre : 'Sin asunto'}</td>
             <td>${task.cliente ? task.cliente.nombre_fiscal : 'Sin cliente'}</td>
             <td>${task.tipo ? task.tipo.nombre : 'Sin tipo'}</td>
+            <td>${task.estado || 'Sin estado'}</td>
+            <td>${task.fecha_vencimiento ? new Date(task.fecha_vencimiento).toLocaleDateString() : 'Sin fecha'}</td>
+            <td>${task.facturable ? 'SI' : 'NO'}</td>
+            <td>${task.facturado || 'NO'}</td>
             <td class="col-descripcion">${task.descripcion ? truncateText(task.descripcion, 100) : ''}</td>
             <td class="col-observaciones">${task.observaciones ? truncateText(task.observaciones, 100) : ''}</td>
-            <td>${task.facturable ? 'Sí' : 'No'}</td>
-            <td>${task.facturado || 'No'}</td>
-            <td>${task.subtipo || ''}</td>
-            <td>${task.estado}</td>
-
-            <td>${task.fecha_inicio ? new Date(task.fecha_inicio).toLocaleDateString() : 'Sin fecha'}</td>
-            <td>${task.fecha_vencimiento ? new Date(task.fecha_vencimiento).toLocaleDateString() : 'Sin fecha'}</td>
-            <td>${task.fecha_imputacion ? new Date(task.fecha_imputacion).toLocaleDateString() : 'Sin fecha'}</td>
-            <td>${task.tiempo_previsto || 'N/A'}</td>
-            <td>${task.tiempo_real || 'N/A'}</td>
+            <td>${task.suplido ? task.suplido : 'N/A'}</td>
+            <td>${task.coste ? task.coste : 'N/A'}</td>
+            <td>${task.precio ? task.precio : 'N/A'}</td>
             <td>
             ${task.fecha_planificacion ? formatFechaPlanificacion(task.fecha_planificacion) : 'Sin fecha'}
-            </td>             
+            </td> 
             <td>${task.users && task.users.length > 0 ? task.users.map(user => user.name).join(', ') : 'Sin asignación'}</td>
+
         `;
     } else {
         console.error(`No se encontró una fila con el ID de la tarea: ${task.id}`);

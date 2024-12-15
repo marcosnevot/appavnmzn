@@ -71,8 +71,8 @@
             </div>
 
             <div class="form-group narrow">
-                <label for="filter-persona_contacto">Persona Contacto:</label>
-                <input type="text" name="filter_persona_contacto" id="filter-persona_contacto-input" autocomplete="off" placeholder="Persona Contacto">
+                <label for="filter-persona_contacto">Observaciones:</label>
+                <input type="text" name="filter_persona_contacto" id="filter-persona_contacto-input" autocomplete="off" placeholder="Observaciones">
             </div>
 
             <div class="form-group medium">

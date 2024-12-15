@@ -115,7 +115,7 @@
 
 
             <!-- Subtipo -->
-            <div class="form-group grow">
+            <div class="form-group grow" style="display: none;">
                 <label for="filter-subtipo">Subtipo:</label>
                 <div class="custom-select" id="filter-subtipo-select">
                     <div id="filter-selected-subtipos" class="selected-items"></div>
@@ -168,21 +168,7 @@
 
         <!-- Fila 3: Precio, Suplido, Coste -->
         <div class="form-row">
-            <div class="form-group" style="display: none;">
-                <label for="filter-precio">Precio (€):</label>
-                <input type="number" step="0.01" name="filter_precio" id="filter-precio">
-            </div>
-
-            <div class="form-group" style="display: none;">
-                <label for="filter-suplido">Suplido (€):</label>
-                <input type="number" step="0.01" name="filter_suplido" id="filter-suplido">
-            </div>
-
-            <div class="form-group" style="display: none;">
-                <label for="filter-coste">Coste (€):</label>
-                <input type="number" step="0.01" name="filter_coste" id="filter-coste">
-            </div>
-
+            
             <!-- Campo para filtrar por Descripción -->
             <div class="form-group grow">
                 <label for="filter-descripcion-input">Descripción:</label>
@@ -223,15 +209,31 @@
                 <input type="date" name="filter_fecha_imputacion" id="filter-fecha-imputacion">
             </div>
 
-            <div class="form-group time">
+            <div class="form-group time" style="display: none;">
                 <label for="filter-tiempo-previsto">Horas Previstas:</label>
                 <input type="number" step="0.25" name="filter_tiempo_previsto" id="filter-tiempo-previsto">
             </div>
 
-            <div class="form-group time">
+            <div class="form-group time" style="display: none;">
                 <label for="filter-tiempo-real">Horas Reales:</label>
                 <input type="number" step="0.25" name="filter_tiempo_real" id="filter-tiempo-real">
             </div>
+
+            <div class="form-group time">
+                <label for="filter-precio">Precio (€):</label>
+                <input type="number" step="0.01" name="filter_precio" id="filter-precio">
+            </div>
+
+            <div class="form-group time">
+                <label for="filter-suplido">Suplido (€):</label>
+                <input type="number" step="0.01" name="filter_suplido" id="filter-suplido">
+            </div>
+
+            <div class="form-group time">
+                <label for="filter-coste">Coste (€):</label>
+                <input type="number" step="0.01" name="filter_coste" id="filter-coste">
+            </div>
+
         </div>
 
         <!-- Botones del formulario -->

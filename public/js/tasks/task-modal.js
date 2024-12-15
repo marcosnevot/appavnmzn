@@ -579,9 +579,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const rowToUpdate = document.querySelector(`tr[data-task-id="${task.id}"]`);
         if (rowToUpdate) {
-            const asunto = task.asunto ? task.asunto : rowToUpdate.querySelector('td:nth-child(6)').textContent;
-            const cliente = task.cliente ? task.cliente : rowToUpdate.querySelector('td:nth-child(5)').textContent;
-            const tipo = task.tipo ? task.tipo : rowToUpdate.querySelector('td:nth-child(14)').textContent;
+            const asunto = task.asunto ? task.asunto : rowToUpdate.querySelector('td:nth-child(3)').textContent;
+            const cliente = task.cliente ? task.cliente : rowToUpdate.querySelector('td:nth-child(4)').textContent;
+            const tipo = task.tipo ? task.tipo : rowToUpdate.querySelector('td:nth-child(5)').textContent;
 
             // Añade una clase según el estado de la tarea
             const estadoClass = task.estado ? `estado-${task.estado.toLowerCase()}` : 'estado-default';
@@ -589,26 +589,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
             rowToUpdate.innerHTML = `
-                    <td>${task.id}</td>
-                    <td>${task.fecha_vencimiento ? new Date(task.fecha_vencimiento).toLocaleDateString() : 'Sin fecha'}</td>
-                    <td>
-                      ${task.fecha_planificacion ? formatFechaPlanificacion(task.fecha_planificacion) : 'Sin fecha'}
-                     </td> 
-                    <td>${task.users && task.users.length > 0 ? task.users.join(', ') : 'Sin asignación'}</td>
-                    <td>${cliente}</td>
-                    <td>${asunto}</td>
-                    <td class="col-descripcion">${task.descripcion ? truncateText(task.descripcion, 100) : ''}</td>
-                     <td class="col-observaciones">${task.observaciones ? truncateText(task.observaciones, 100) : ''}</td>
-                    <td>${task.facturable ? 'Sí' : 'No'}</td>
-                    <td>${task.facturado || 'No facturado'}</td>
-                    <td>${task.estado}</td>
-                    <td>${task.tiempo_previsto || 'N/A'}</td>
-                    <td>${task.tiempo_real || 'N/A'}</td>
-                    <td>${tipo}</td>
-                    <td>${task.subtipo || ''}</td>
-                    <td>${task.fecha_inicio ? new Date(task.fecha_inicio).toLocaleDateString() : 'Sin fecha'}</td>  
+            <td>${task.id}</td>
+            <td>${task.fecha_inicio ? new Date(task.fecha_inicio).toLocaleDateString() : 'Sin fecha'}</td>
+            <td>${asunto}</td>
+            <td>${cliente}</td>
+            <td>${tipo}</td>
+            <td>${task.estado || 'Sin estado'}</td>
+            <td>${task.fecha_vencimiento ? new Date(task.fecha_vencimiento).toLocaleDateString() : 'Sin fecha'}</td>
+            <td>${task.facturable ? 'SI' : 'NO'}</td>
+            <td>${task.facturado || 'NO'}</td>
+            <td class="col-descripcion">${task.descripcion ? truncateText(task.descripcion, 100) : ''}</td>
+            <td class="col-observaciones">${task.observaciones ? truncateText(task.observaciones, 100) : ''}</td>
+            <td>${task.suplido ? task.suplido : '0.00'}</td>
+            <td>${task.coste ? task.coste : '0.00'}</td>
+            <td>${task.precio ? task.precio : '0.00'}</td>
+            <td>${task.fecha_planificacion ? formatFechaPlanificacion(task.fecha_planificacion) : 'Sin fecha'}</td>
+            <td>${task.users && task.users.length > 0 ? task.users.join(', ') : 'Sin asignación'}</td>
+        `;
 
-                `;
         } else {
             console.warn('No se encontró la fila correspondiente a la tarea actualizada');
         }

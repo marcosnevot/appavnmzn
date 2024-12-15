@@ -5,17 +5,21 @@
         <thead>
             <tr>
                 <th data-sort-key="id" style="cursor: pointer;">ID</th>
-                <th data-sort-key="fecha_vencimiento" data-field="filter_fecha_vencimiento" style="cursor: pointer;">Fecha Vencimiento</th>
-                <th data-sort-key="fecha_planificacion" data-field="filter_fecha_planificacion" style="cursor: pointer;">Planificacion</th>
-                <th data-sort-key="cliente.nombre_fiscal" data-field="cliente" class="col-cliente" id="header-client" style="cursor: pointer;">Cliente</th>
+                <th data-sort-key="fecha_inicio" data-field="filter_fecha_inicio" style="cursor: pointer;">Fecha Inicio</th>
                 <th data-sort-key="asunto.nombre" data-field="asunto" style="cursor: pointer;">Asunto</th>
-                <th data-sort-key="descripcion" data-field="filter_descripcion" data-field="filter_fecha_vencimiento" style="cursor: pointer;" class="col-descripcion">Descripción</th>
-                <th data-sort-key="observaciones" data-field="filter_observaciones" style="cursor: pointer;" class="col-descripcion">Observaciones</th>
+                <th data-sort-key="cliente.nombre_fiscal" data-field="cliente" class="col-cliente" id="header-client" style="cursor: pointer;">Cliente</th>
+                <th data-sort-key="tipo.nombre" data-field="tipo" style="cursor: pointer;">Tipo</th>
+                <th data-sort-key="estado" data-field="filter-estado" style="cursor: pointer;">Estado</th>
+                <th data-sort-key="fecha_vencimiento" data-field="filter_fecha_vencimiento" style="cursor: pointer;">Fecha Vencimiento</th>
                 <th data-sort-key="facturable" data-field="filter-facturable" style="cursor: pointer;">Facturable</th>
                 <th data-sort-key="facturado" data-field="filter-facturado" style="cursor: pointer;">Facturado</th>
-                <th data-sort-key="estado" data-field="filter-estado" style="cursor: pointer;">Estado</th>
-                <th data-sort-key="tipo.nombre" data-field="tipo" style="cursor: pointer;">Tipo</th>
-                <th data-sort-key="fecha_inicio" data-field="filter_fecha_inicio" style="cursor: pointer;">Fecha Inicio</th>
+                <th data-sort-key="descripcion" data-field="filter_descripcion" style="cursor: pointer;" class="col-descripcion">Descripción</th>
+                <th data-sort-key="observaciones" data-field="filter_observaciones" style="cursor: pointer;" class="col-observaciones">Observaciones</th>
+                <th data-sort-key="suplido" data-field="filter_suplido" style="cursor: pointer;">Suplido</th>
+                <th data-sort-key="coste" data-field="filter_coste" style="cursor: pointer;">Coste</th>
+                <th data-sort-key="precio" data-field="filter_precio" style="cursor: pointer;">Precio</th>
+                <th data-sort-key="fecha_planificacion" data-field="filter_fecha_planificacion" style="cursor: pointer;">Planificación</th>
+                <th data-sort-key="users.name" data-field="filter-user" style="cursor: pointer;">Asignado a</th>
             </tr>
         </thead>
         <tbody>

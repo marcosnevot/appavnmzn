@@ -16,51 +16,49 @@ class TasksExport implements FromCollection, WithHeadings
         $this->tasks = $tasks->map(function ($task) {
             return [
                 'ID' => $task->id,
-                'Fecha de Vencimiento' => $task->fecha_vencimiento,
-                'Fecha de Planificación' => $task->fecha_planificacion,
-                'Usuarios Asignados' => $task->users->pluck('name')->join(', '),  // Concatenar nombres de usuarios
-                'Cliente' => $task->cliente ? $task->cliente->nombre_fiscal : 'Sin cliente',
-                'Asunto' => $task->asunto ? $task->asunto->nombre : 'Sin asunto',
-                'Descripción' => $task->descripcion,
-                'Observaciones' => $task->observaciones,
-                'Facturable' => $task->facturable ? 'Sí' : 'No',
-                'Facturado' => $task->facturado,
-                'Estado' => $task->estado,
-                'Tiempo Previsto' => $task->tiempo_previsto,
-                'Tiempo Real' => $task->tiempo_real,
-                'Tipo' => $task->tipo ? $task->tipo->nombre : 'Sin tipo',
-                'Subtipo' => $task->subtipo,
                 'Fecha de Inicio' => $task->fecha_inicio,
-                'Fecha de Creación' => $task->created_at,
+                'Asunto' => $task->asunto ? $task->asunto->nombre : 'Sin asunto',
+                'Cliente' => $task->cliente ? $task->cliente->nombre_fiscal : 'Sin cliente',
+                'Tipo' => $task->tipo ? $task->tipo->nombre : 'Sin tipo',
+                'Estado' => $task->estado,
+                'Fecha de Vencimiento' => $task->fecha_vencimiento,
+                'Facturable' => $task->facturable ? 'Sí' : 'No',
+                'Facturado' => $task->facturado ?? 'No',
+                'Descripción' => $task->descripcion ?? '',
+                'Observaciones' => $task->observaciones ?? '',
+                'Suplido' => $task->suplido !== null ? number_format($task->suplido, 2) : '0.00',
+                'Coste' => $task->coste !== null ? number_format($task->coste, 2) : '0.00',
+                'Precio' => $task->precio !== null ? number_format($task->precio, 2) : '0.00',
+                'Planificación' => $task->fecha_planificacion ?? '',
+                'Usuarios Asignados' => $task->users->pluck('name')->join(', ') ?: 'Sin asignación',
             ];
         });
     }
+
 
     public function collection()
     {
         return $this->tasks;
     }
-
     public function headings(): array
     {
         return [
             'ID',
-            'Fecha de Vencimiento',
-            'Fecha de Planificación',
-            'Usuarios Asignados',
-            'Cliente',
+            'Fecha de Inicio',
             'Asunto',
-            'Descripción',
-            'Observaciones',
+            'Cliente',
+            'Tipo',
+            'Estado',
+            'Fecha de Vencimiento',
             'Facturable',
             'Facturado',
-            'Estado',
-            'Tiempo Previsto',
-            'Tiempo Real',
-            'Tipo',
-            'Subtipo',
-            'Fecha de Inicio',
-            'Fecha de Creación',
+            'Descripción',
+            'Observaciones',
+            'Suplido',
+            'Coste',
+            'Precio',
+            'Planificación',
+            'Usuarios Asignados',
         ];
     }
 }
