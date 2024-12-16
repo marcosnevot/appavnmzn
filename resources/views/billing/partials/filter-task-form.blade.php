@@ -45,40 +45,7 @@
 
         <!-- Fila 2: Asignado a, Archivo, Facturable, Facturado -->
         <div class="form-row">
-            <div class="form-group grow">
-                <label for="filter-estado">Estado:</label>
-                <div class="custom-select" id="filter-estado-select">
-                    <div id="filter-selected-estados" class="selected-estados">
-                        <!-- Aquí se mostrarán las selecciones -->
-                    </div>
-                    <div id="filter-estado-list" class="dropdown-list" style="display: none;">
-                        <ul>
-                            <li>
-                                <input class="user-checkbox" type="checkbox" id="filter-estado-planificada" value="PLANIFICADA">
-                                <label for="filter-estado-planificada">Planificada</label>
-                            </li>
-                            <li>
-                                <input class="user-checkbox" type="checkbox" id="filter-estado-pendiente" value="PENDIENTE">
-                                <label for="filter-estado-pendiente">Pendiente</label>
-                            </li>
-                            <li>
-                                <input class="user-checkbox" type="checkbox" id="filter-estado-enespera" value="ENESPERA">
-                                <label for="filter-estado-enespera">En Espera</label>
-                            </li>
-                            <li>
-                                <input class="user-checkbox" type="checkbox" id="filter-estado-completada" value="COMPLETADA">
-                                <label for="filter-estado-completada">Completada</label>
-                            </li>
-                            <li>
-                                <input class="user-checkbox" type="checkbox" id="filter-estado-recurrente/trimestre" value="RECURRENTE/TRIMESTRE">
-                                <label for="filter-estado-recurrente/trimestre">RECURRENTE/TRIMESTRE</label>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <input type="hidden" name="filter_estado" id="filter-estado-ids"> <!-- Campo oculto -->
-
-            </div>
+           
 
             <div class="form-group grow">
                 <label for="filter-user-select">Asignado a:</label>
@@ -140,6 +107,41 @@
                 <input type="hidden" name="filter_facturado" id="filter-facturado-ids">
             </div>
 
+            <div class="form-group grow">
+                <label for="filter-estado">Estado:</label>
+                <div class="custom-select" id="filter-estado-select">
+                    <div id="filter-selected-estados" class="selected-estados">
+                        <!-- Aquí se mostrarán las selecciones -->
+                    </div>
+                    <div id="filter-estado-list" class="dropdown-list" style="display: none;">
+                        <ul>
+                            <li>
+                                <input class="user-checkbox" type="checkbox" id="filter-estado-planificada" value="PLANIFICADA">
+                                <label for="filter-estado-planificada">Planificada</label>
+                            </li>
+                            <li>
+                                <input class="user-checkbox" type="checkbox" id="filter-estado-pendiente" value="PENDIENTE">
+                                <label for="filter-estado-pendiente">Pendiente</label>
+                            </li>
+                            <li>
+                                <input class="user-checkbox" type="checkbox" id="filter-estado-enespera" value="ENESPERA">
+                                <label for="filter-estado-enespera">En Espera</label>
+                            </li>
+                            <li>
+                                <input class="user-checkbox" type="checkbox" id="filter-estado-completada" value="COMPLETADA">
+                                <label for="filter-estado-completada">Completada</label>
+                            </li>
+                            <li>
+                                <input class="user-checkbox" type="checkbox" id="filter-estado-recurrente/trimestre" value="RECURRENTE/TRIMESTRE">
+                                <label for="filter-estado-recurrente/trimestre">RECURRENTE/TRIMESTRE</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <input type="hidden" name="filter_estado" id="filter-estado-ids"> <!-- Campo oculto -->
+
+            </div>
+
         </div>
 
 
@@ -186,20 +188,7 @@
 
         <!-- Fila 3: Precio, Suplido, Coste -->
         <div class="form-row">
-            <div class="form-group" style="display: none;">
-                <label for="filter-precio">Precio (€):</label>
-                <input type="number" step="0.01" name="filter_precio" id="filter-precio">
-            </div>
-
-            <div class="form-group" style="display: none;">
-                <label for="filter-suplido">Suplido (€):</label>
-                <input type="number" step="0.01" name="filter_suplido" id="filter-suplido">
-            </div>
-
-            <div class="form-group" style="display: none;">
-                <label for="filter-coste">Coste (€):</label>
-                <input type="number" step="0.01" name="filter_coste" id="filter-coste">
-            </div>
+            
             <!-- Campo para filtrar por Descripción -->
             <div class="form-group grow">
                 <label for="filter-descripcion-input">Descripción:</label>
@@ -237,7 +226,20 @@
             </div>
 
 
+            <div class="form-group time" >
+                <label for="filter-precio">Precio (€):</label>
+                <input type="number" step="0.01" name="filter_precio" id="filter-precio">
+            </div>
 
+            <div class="form-group time">
+                <label for="filter-suplido">Suplido (€):</label>
+                <input type="number" step="0.01" name="filter_suplido" id="filter-suplido">
+            </div>
+
+            <div class="form-group time">
+                <label for="filter-coste">Coste (€):</label>
+                <input type="number" step="0.01" name="filter_coste" id="filter-coste">
+            </div>
 
 
 

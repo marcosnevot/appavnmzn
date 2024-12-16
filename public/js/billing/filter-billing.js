@@ -35,6 +35,9 @@ function loadFilteredTasks(page = 1, sortKey = 'fecha_planificacion', sortDirect
         tiempo_real: document.getElementById('filter-tiempo-real').value || '',
         descripcion: document.getElementById('filter-descripcion-input').value || '', // Nuevo campo para descripción
         observaciones: document.getElementById('filter-observaciones-input').value || '', // Nuevo campo para observaciones
+        precio: document.getElementById('filter-precio').value || '',
+        suplido: document.getElementById('filter-suplido').value || '',
+        coste: document.getElementById('filter-coste').value || '',
         // Filtros personalizados para Facturación
         facturable: document.getElementById('filter-facturable-ids').value || '', // Usar el campo oculto con los valores seleccionados
         facturado: document.getElementById('filter-facturado-ids').value || '', // Usar el campo oculto con los valores seleccionados

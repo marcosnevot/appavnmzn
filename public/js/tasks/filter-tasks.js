@@ -13,7 +13,7 @@ let isLoading = false; // Bandera para evitar solicitudes concurrentes
 
 
 
-function loadFilteredTasks(page = 1, sortKey = 'fecha_planificacion', sortDirection = 'asc') {
+function loadFilteredTasks(page = 1, sortKey = 'created_at', sortDirection = 'desc') {
     if (isLoading) return; // Salir si ya hay una solicitud en curso
     isLoading = true; // Marcar que una solicitud está en curso
 
