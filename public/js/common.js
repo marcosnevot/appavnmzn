@@ -952,7 +952,7 @@ function updateTaskColumn(taskId, newValue, targetCell, select, columnKey) {
                 targetCell.setAttribute(`data-${columnKey}`, newValue);
                 targetCell.textContent = newValue;
 
-                loadTasks(1, 'fecha_planificacion', 'asc');
+                loadTasks(1, 'created_at', 'desc');
                 // Mostrar notificación de éxito
                 showNotification(`Columna ${columnKey} actualizada correctamente`, 'info');
             } else {
