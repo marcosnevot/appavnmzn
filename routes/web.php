@@ -101,6 +101,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/clientes/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit');
     Route::put('/clientes/{id}', [ClientController::class, 'update'])->name('clients.update');
     Route::post('/clientes/export', [ClientController::class, 'exportFilteredCustomers'])->name('clientes.export');
+    Route::post('/clientes/emails', [ClientController::class, 'fetchEmails'])->name('clientes.fetchEmails');
 });
 
 require __DIR__ . '/auth.php';

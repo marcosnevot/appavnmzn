@@ -53,6 +53,30 @@ function resetFiltroRapidoPlanificacion() {
     }
 }
 
+// Actualizar visualización de ítems seleccionados
+function updateSelectedDisplay(container, items, isBoolean) {
+    container.innerHTML = '';
+    if (items.length === 0) {
+        const placeholder = document.createElement('span');
+        placeholder.textContent = 'Seleccionar...';
+        placeholder.style.color = '#aaa';
+        placeholder.style.fontStyle = 'italic';
+        container.appendChild(placeholder);
+    } else {
+        items.forEach(item => {
+            const span = document.createElement('span');
+            span.textContent = isBoolean ? (item === true ? 'Sí' : 'No') : item;
+            span.style.backgroundColor = '#f0f0f0';
+            span.style.color = '#333';
+            span.style.padding = '3px 8px';
+            span.style.borderRadius = '15px';
+            span.style.fontSize = '12px';
+            span.style.lineHeight = '1.5';
+            span.style.border = '1px solid #ddd';
+            container.appendChild(span);
+        });
+    }
+}
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -155,8 +179,8 @@ document.addEventListener('DOMContentLoaded', function () {
         botonPasadas.setAttribute('data-fecha', 'past');
         botonPasadas.onclick = () => filtrarTareasPorPlanificacion('past');
         planificacionFilterContainer.appendChild(botonPasadas);
-        
-        
+
+
         sincronizarBotonesConFecha();
 
         // Seleccionar "Todas" inicialmente
@@ -299,7 +323,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (originalCheckbox) {
                     originalCheckbox.checked = checkbox.checked; // Sincronizar estado del checkbox
                 }
+
+                const cleanField = field.replace('filter-', '');
+
+                // Obtener el contenedor de ítems seleccionados correspondiente
+                const idMap = {
+                    estado: 'filter-selected-estados',
+                    facturable: 'filter-selected-facturables',
+                    facturado: 'filter-selected-facturados'
+                };
+
+                const selectedContainer = document.getElementById(idMap[cleanField]);
+                if (!selectedContainer) {
+                    console.warn(`No se encontró el contenedor seleccionado para el campo: ${field}`);
+                    return; // Salir si el contenedor no existe
+                }
+                const selectedItems = Array.from(dropdownList.querySelectorAll('input[type="checkbox"]:checked'))
+                    .map(cb => cb.value);
+
                 updateHiddenField(field, dropdownList);
+                updateSelectedDisplay(selectedContainer, selectedItems, field === 'facturable');
                 applyFilterOnChange(); // Activar el filtrado automáticamente
             });
             // Manejar clic en el texto asociado
@@ -331,6 +374,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }, 0);
     }
+
+
 
     function showInputField(header, inputField) {
         hideAllDropdownLists(); // Ocultar cualquier lista desplegada
@@ -952,7 +997,7 @@ function updateTaskColumn(taskId, newValue, targetCell, select, columnKey) {
                 targetCell.setAttribute(`data-${columnKey}`, newValue);
                 targetCell.textContent = newValue;
 
-                loadTasks(1, 'created_at', 'desc');
+                loadTasks(1, 'fecha_planificacion', 'asc');
                 // Mostrar notificación de éxito
                 showNotification(`Columna ${columnKey} actualizada correctamente`, 'info');
             } else {
@@ -969,5 +1014,76 @@ function updateTaskColumn(taskId, newValue, targetCell, select, columnKey) {
             select.remove();
         });
 }
+
+
+
+function formatFechaGenerica(fecha, tipo) {
+    const hoy = new Date();
+    const manana = new Date();
+    manana.setDate(hoy.getDate() + 1);
+    const fechaObjetivo = new Date(fecha);
+
+    // Verificar si la fecha es válida
+    if (isNaN(fechaObjetivo.getTime())) {
+        return 'Fecha no válida';
+    }
+
+    // Lógica para `fecha_vencimiento`
+    if (tipo === "Vencimiento") {
+        // Si la fecha es hoy, formatearla en azul
+        if (
+            fechaObjetivo.getDate() === hoy.getDate() &&
+            fechaObjetivo.getMonth() === hoy.getMonth() &&
+            fechaObjetivo.getFullYear() === hoy.getFullYear()
+        ) {
+            return `<span style="color: blue;">${fechaObjetivo.toLocaleDateString()}</span>`;
+        }
+
+        // Si la fecha es anterior a hoy, formatearla en rojo
+        if (fechaObjetivo < hoy) {
+            return `<span style="color: red;">${fechaObjetivo.toLocaleDateString()}</span>`;
+        }
+
+        // Mostrar solo la fecha para fechas futuras
+        return fechaObjetivo.toLocaleDateString();
+    }
+
+    // Lógica para `fecha_planificacion`
+    if (tipo === "Planificación") {
+        // Array con los nombres de los días de la semana
+        const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+
+        // Si la fecha es hoy
+        if (
+            fechaObjetivo.getDate() === hoy.getDate() &&
+            fechaObjetivo.getMonth() === hoy.getMonth() &&
+            fechaObjetivo.getFullYear() === hoy.getFullYear()
+        ) {
+            return "HOY";
+        }
+
+        // Si la fecha es mañana
+        if (
+            fechaObjetivo.getDate() === manana.getDate() &&
+            fechaObjetivo.getMonth() === manana.getMonth() &&
+            fechaObjetivo.getFullYear() === manana.getFullYear()
+        ) {
+            return "MAÑANA";
+        }
+
+        // Si la fecha es anterior a hoy, formatearla en rojo
+        if (fechaObjetivo < hoy) {
+            return `<span style="color: red;">${fechaObjetivo.toLocaleDateString()}</span>`;
+        }
+
+        // Mostrar el nombre del día para fechas de esta semana
+        const diaSemana = diasSemana[fechaObjetivo.getDay()];
+        return diaSemana + ", " + fechaObjetivo.toLocaleDateString();
+    }
+
+    // Si el tipo no es reconocido
+    return fechaObjetivo.toLocaleDateString();
+}
+
 
 

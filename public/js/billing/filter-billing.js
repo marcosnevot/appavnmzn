@@ -8,7 +8,6 @@ const applyFilterButton = document.getElementById('apply-filter-button');
 const cancelFilterButton = document.getElementById('cancel-filter-button');
 const clearFilterButton = document.getElementById('clear-filter-button');
 
-
 let isLoading = false; // Bandera para evitar solicitudes concurrentes
 
 function loadFilteredTasks(page = 1, sortKey = 'fecha_planificacion', sortDirection = 'asc') {
@@ -25,7 +24,7 @@ function loadFilteredTasks(page = 1, sortKey = 'fecha_planificacion', sortDirect
         asunto: document.getElementById('filter-asunto-ids').value || '',  // Usar los IDs/nombres de asuntos seleccionados
         tipo: document.getElementById('filter-tipo-ids').value || '',
         subtipo: document.getElementById('filter-subtipo').value || '',
-        estado: document.getElementById('filter-estado-ids').value || '', // Predeterminar a "PENDIENTE, ENESPERA"
+        estado: document.getElementById('filter-estado-ids').value || 'COMPLETADA', // Predeterminar a "PENDIENTE, ENESPERA"
         usuario: document.getElementById('filter-user-ids').value || '',
         fecha_inicio: document.getElementById('filter-fecha-inicio').value || '',
         fecha_vencimiento: document.getElementById('filter-fecha-vencimiento').value || '',
@@ -35,9 +34,6 @@ function loadFilteredTasks(page = 1, sortKey = 'fecha_planificacion', sortDirect
         tiempo_real: document.getElementById('filter-tiempo-real').value || '',
         descripcion: document.getElementById('filter-descripcion-input').value || '', // Nuevo campo para descripción
         observaciones: document.getElementById('filter-observaciones-input').value || '', // Nuevo campo para observaciones
-        precio: document.getElementById('filter-precio').value || '',
-        suplido: document.getElementById('filter-suplido').value || '',
-        coste: document.getElementById('filter-coste').value || '',
         // Filtros personalizados para Facturación
         facturable: document.getElementById('filter-facturable-ids').value || '', // Usar el campo oculto con los valores seleccionados
         facturado: document.getElementById('filter-facturado-ids').value || '', // Usar el campo oculto con los valores seleccionados
@@ -83,87 +79,6 @@ function loadFilteredTasks(page = 1, sortKey = 'fecha_planificacion', sortDirect
         });
 }
 
-let usersData = JSON.parse(document.getElementById('usuarios-data').getAttribute('data-usuarios'));
-
-// Función para actualizar el panel de filtros
-function updateFilterInfoPanel(filters) {
-    const filterInfoContent = document.getElementById('filter-info-content');
-    const filterInfoPanel = document.getElementById('filter-info-panel');
-
-    filterInfoContent.innerHTML = ''; // Limpiar contenido anterior
-
-    // Filtrar las entradas con valores no vacíos
-    const filterEntries = Object.entries(filters).filter(([key, value]) => value !== '');
-
-    if (filterEntries.length === 0) {
-        // Ocultar el panel cuando no hay filtros aplicados
-        filterInfoPanel.classList.add('hide');
-    } else {
-        filterEntries.forEach(([key, value]) => {
-            const p = document.createElement('p');
-
-            if (key === 'cliente') {
-                // Manejo para clientes
-                const clienteIds = value.split(',').map(id => parseInt(id));
-                const clienteNames = clienteIds
-                    .map(id => {
-                        const cliente = clientesData.find(cliente => cliente.id === id);
-                        return cliente ? cliente.nombre_fiscal : 'Desconocido';
-                    })
-                    .join(', ');
-
-                p.textContent = `Cliente(s): ${clienteNames || 'Desconocido'}`;
-            } else if (key === 'asunto') {
-                // Manejo para asuntos
-                const asuntoIds = value.split(',').map(id => parseInt(id));
-                const asuntoNames = asuntoIds
-                    .map(id => {
-                        const asunto = asuntosData.find(asunto => asunto.id === id);
-                        return asunto ? asunto.nombre : 'Desconocido';
-                    })
-                    .join(', ');
-
-                p.textContent = `Asunto(s): ${asuntoNames || 'Desconocido'}`;
-            } else if (key === 'tipo') {
-                // Manejo para tipos
-                const tipoIds = value.split(',').map(id => parseInt(id));
-                const tipoNames = tipoIds
-                    .map(id => {
-                        const tipo = tiposData.find(tipo => tipo.id === id);
-                        return tipo ? tipo.nombre : 'Desconocido';
-                    })
-                    .join(', ');
-
-                p.textContent = `Tipo(s): ${tipoNames || 'Desconocido'}`;
-            } else if (key === 'usuario') {
-                // Manejo para usuarios
-                const userIds = value.split(',').map(id => parseInt(id));
-                const userNames = userIds
-                    .map(id => {
-                        const usuario = usersData.find(usuario => usuario.id === id);
-                        return usuario ? usuario.name : 'Desconocido';
-                    })
-                    .join(', ');
-
-                p.textContent = `Mostrando Tareas De: ${userNames}`;
-            } else {
-                p.textContent = `${capitalizeFirstLetter(key)}: ${value}`;
-            }
-
-            filterInfoContent.appendChild(p);
-        });
-
-
-        // Mostrar el panel si hay filtros
-        filterInfoPanel.classList.remove('hide');
-    }
-}
-
-
-// Función para capitalizar la primera letra
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1).replace('_', ' ');
-}
 
 
 
@@ -516,28 +431,29 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterSelectedUsersContainer = document.getElementById('filter-selected-users');
     const filterUserIdsInput = document.getElementById('filter-user-ids');
     let filterSelectedUsers = [];
+    filterUserIdsInput.value = ''; 
     let filterCurrentFocus = -1;
 
 
 
 
     // Obtener el ID del usuario en sesión y agregarlo como seleccionado
-    const sessionUserId = document.getElementById('user-session-id').value;
-    const sessionUserCheckbox = document.getElementById(`filter-user-${sessionUserId}`);
+    //const sessionUserId = document.getElementById('user-session-id').value;
+    //const sessionUserCheckbox = document.getElementById(`filter-user-${sessionUserId}`);
 
-    if (sessionUserCheckbox) {
-        sessionUserCheckbox.checked = true;
-        const sessionUserName = sessionUserCheckbox.nextElementSibling.textContent;
+    //if (sessionUserCheckbox) {
+    //    sessionUserCheckbox.checked = true;
+    //    const sessionUserName = sessionUserCheckbox.nextElementSibling.textContent;
 
         // Añadir el usuario en sesión a la lista de seleccionados al cargar la página
-        filterSelectedUsers.push({ id: sessionUserId, name: sessionUserName });
-        updateFilterSelectedUsersDisplay();
-        updateFilterUserIdsInput();
-    }
+        // filterSelectedUsers.push({ id: sessionUserId, name: sessionUserName });
+    //    updateFilterSelectedUsersDisplay();
+    //    updateFilterUserIdsInput();
+    // }
 
     // Actualiza el panel de información del filtro para mostrar el filtro del usuario en sesión
     updateFilterInfoPanel({
-        usuario: sessionUserId  // Define el usuario en sesión como filtro activo
+        //usuario: sessionUserId  // Define el usuario en sesión como filtro activo
     });
     // Llama a la función inicialmente para cargar el título al abrir la página
     updateSelectedUserNamesFromFilterForm();
@@ -645,24 +561,43 @@ document.addEventListener('DOMContentLoaded', function () {
         const listElement = document.getElementById(`filter-${fieldName}-list`);
         const hiddenInput = document.getElementById(`filter-${fieldName}-ids`);
         const selectedContainer = document.getElementById(`filter-selected-${fieldName}s`);
-        let selectedItems = [...defaultValues]; // Inicializar con valores predeterminados
+        let selectedItems = [...defaultValues]; // Incluir los valores predeterminados
         let currentFocus = -1;
 
-        // Manejar checkboxes y marcar los valores predeterminados
-        const checkboxes = Array.from(listElement.querySelectorAll('input[type="checkbox"]'));
+        // Marcar las casillas de los valores predeterminados
+        if (defaultValues.length > 0) {
+            defaultValues.forEach(value => {
+                const checkbox = document.querySelector(`#filter-${fieldName}-list input[value="${value}"]`);
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
+            });
+        }
+
+        // Configurar el campo oculto con los valores predeterminados
+        hiddenInput.value = selectedItems.join(',');
+
+        // Renderizar los valores predeterminados en el contenedor
+        updateSelectedDisplay(selectedContainer, selectedItems, isBoolean);
+
+        // Alternar visibilidad de la lista desplegable
+        selectElement.addEventListener('click', function (event) {
+            event.stopPropagation(); // Evitar que se cierre inmediatamente
+            toggleListVisibility();
+        });
+
+        // Manejar selección de checkboxes
+        const checkboxes = Array.from(listElement.querySelectorAll('input[type="checkbox"]')); // Convertir NodeList a Array
         checkboxes.forEach((checkbox, index) => {
             checkbox.dataset.index = index; // Asignar índice único al checkbox
-            const value = isBoolean ? checkbox.value === "1" : checkbox.value;
 
-            // Marcar los valores predeterminados
-            if (defaultValues.includes(value)) {
-                checkbox.checked = true;
-            }
-
-            // Manejar selección/deselección
             checkbox.addEventListener('change', function () {
+                const value = isBoolean ? this.value === "1" : this.value;
+
                 if (this.checked) {
-                    selectedItems.push(value);
+                    if (!selectedItems.includes(value)) {
+                        selectedItems.push(value);
+                    }
                 } else {
                     selectedItems = selectedItems.filter(item => item !== value);
                 }
@@ -690,22 +625,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Alternar visibilidad de la lista
-        selectElement.addEventListener('click', function (event) {
-            event.stopPropagation();
-            toggleListVisibility();
-        });
-
-        // Cerrar lista al hacer clic fuera
-        document.addEventListener('click', function (e) {
-            if (!e.target.closest(`#filter-${fieldName}-list`) && e.target !== selectElement) {
-                listElement.style.display = 'none';
-            }
-        });
-
-        // Función para mostrar u ocultar la lista
         function toggleListVisibility() {
-            listElement.style.display = listElement.style.display === 'block' ? 'none' : 'block';
             if (listElement.style.display === 'block') {
+                listElement.style.display = 'none';
+            } else {
+                listElement.style.display = 'block';
                 currentFocus = -1; // Reiniciar la selección cuando se vuelve a abrir
                 focusNextCheckbox(1); // Foco en el primer checkbox al abrir
             }
@@ -716,14 +640,14 @@ document.addEventListener('DOMContentLoaded', function () {
             container.innerHTML = '';
             if (items.length === 0) {
                 const placeholder = document.createElement('span');
-                placeholder.textContent = 'Seleccionar...';
+                placeholder.textContent = 'Cualquiera...';
                 placeholder.style.color = '#aaa';
                 placeholder.style.fontStyle = 'italic';
                 container.appendChild(placeholder);
             } else {
                 items.forEach(item => {
                     const span = document.createElement('span');
-                    span.textContent = isBoolean ? (item === true ? 'Sí' : 'No') : item;
+                    span.textContent = isBoolean ? (item === true ? 'SI' : 'NO') : item;
                     span.style.backgroundColor = '#f0f0f0';
                     span.style.color = '#333';
                     span.style.padding = '3px 8px';
@@ -738,13 +662,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Función para manejar el enfoque de los checkboxes
         function focusNextCheckbox(direction) {
-            currentFocus = (currentFocus + direction + checkboxes.length) % checkboxes.length;
+            const checkboxes = Array.from(listElement.querySelectorAll('input[type="checkbox"]'));
+            currentFocus = (currentFocus + direction + checkboxes.length) % checkboxes.length; // Calcular el índice
             checkboxes[currentFocus].focus();
         }
 
-        // Inicializar el input oculto y la visualización con los valores predeterminados
-        hiddenInput.value = selectedItems.join(',');
-        updateSelectedDisplay(selectedContainer, selectedItems, isBoolean);
+        // Cerrar la lista al hacer clic fuera
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest(`#filter-${fieldName}-list`) && e.target !== selectElement) {
+                listElement.style.display = 'none';
+            }
+        });
 
         // Al final de initializeChecklistFilter
         listElement.querySelectorAll('li').forEach(li => {
@@ -761,12 +689,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         });
+
+
+
     }
 
     // Inicializar los filtros con valores predeterminados
     initializeChecklistFilter('facturable', true, [true]); // Predeterminado a "Sí"
     initializeChecklistFilter('facturado', false, ['NO']); // Predeterminado a "NO"
-    initializeChecklistFilter('estado', false, []); // Sin valores predeterminados para "estado"
+    initializeChecklistFilter('estado', false, ['COMPLETADA']); // Sin valores predeterminados para "estado"
 
 
 });

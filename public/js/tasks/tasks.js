@@ -201,13 +201,13 @@ function loadTasks(page = 1, sortKey, sortDirection) {
         ...window.currentFilters, // Usar filtros activos de la variable global
         estado: window.currentFilters?.estado || 'PENDIENTE,ENESPERA', // Predeterminado
         page, // Página actual
-        user_id: sessionUserId, // Usuario actual
+       // user_id: sessionUserId, // Usuario actual
         sortKey, // Clave de ordenación
         sortDirection, // Dirección de ordenación
 
     });
      console.log(currentFilters); // Verifica qué se está enviando al servidor
-
+     updateFilterInfoPanel(currentFilters);
 
     fetch(`/tareas/getTasks?${params.toString()}`, {
         method: 'GET',

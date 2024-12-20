@@ -60,8 +60,8 @@
             </div>
 
             <div class="form-group narrow">
-                <label for="persona_contacto">Observaciones:</label>
-                <input type="text" name="persona_contacto" id="persona_contacto" autocomplete="off" placeholder="Observaciones">
+                <label for="persona_contacto">Persona Contacto:</label>
+                <input type="text" name="persona_contacto" id="persona_contacto" autocomplete="off" placeholder="Persona Contacto">
             </div>
 
             <div class="form-group narrow">

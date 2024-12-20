@@ -93,80 +93,7 @@ function loadFilteredTasks(page = 1, sortKey = 'created_at', sortDirection = 'de
         });
 }
 
-let usersData = JSON.parse(document.getElementById('usuarios-data').getAttribute('data-usuarios'));
 
-function updateFilterInfoPanel(filters) {
-    const filterInfoContent = document.getElementById('filter-info-content');
-    const filterInfoPanel = document.getElementById('filter-info-panel');
-
-    filterInfoContent.innerHTML = ''; // Limpiar contenido anterior
-
-    // Filtrar las entradas con valores no vacíos
-    const filterEntries = Object.entries(filters).filter(([key, value]) => value !== '');
-
-    if (filterEntries.length === 0) {
-        // Ocultar el panel cuando no hay filtros aplicados
-        filterInfoPanel.classList.add('hide');
-    } else {
-        filterEntries.forEach(([key, value]) => {
-            const p = document.createElement('p');
-
-            if (key === 'cliente') {
-                // Manejo para clientes
-                const clienteIds = value.split(',').map(id => parseInt(id));
-                const clienteNames = clienteIds
-                    .map(id => {
-                        const cliente = clientesData.find(cliente => cliente.id === id);
-                        return cliente ? cliente.nombre_fiscal : 'Desconocido';
-                    })
-                    .join(', ');
-
-                p.textContent = `Cliente(s): ${clienteNames || 'Desconocido'}`;
-            } else if (key === 'asunto') {
-                // Manejo para asuntos
-                const asuntoIds = value.split(',').map(id => parseInt(id));
-                const asuntoNames = asuntoIds
-                    .map(id => {
-                        const asunto = asuntosData.find(asunto => asunto.id === id);
-                        return asunto ? asunto.nombre : 'Desconocido';
-                    })
-                    .join(', ');
-
-                p.textContent = `Asunto(s): ${asuntoNames || 'Desconocido'}`;
-            } else if (key === 'tipo') {
-                // Manejo para tipos
-                const tipoIds = value.split(',').map(id => parseInt(id));
-                const tipoNames = tipoIds
-                    .map(id => {
-                        const tipo = tiposData.find(tipo => tipo.id === id);
-                        return tipo ? tipo.nombre : 'Desconocido';
-                    })
-                    .join(', ');
-
-                p.textContent = `Tipo(s): ${tipoNames || 'Desconocido'}`;
-            } else if (key === 'usuario') {
-                // Manejo para usuarios
-                const userIds = value.split(',').map(id => parseInt(id));
-                const userNames = userIds
-                    .map(id => {
-                        const usuario = usersData.find(usuario => usuario.id === id);
-                        return usuario ? usuario.name : 'Desconocido';
-                    })
-                    .join(', ');
-
-                p.textContent = `Mostrando Tareas De: ${userNames}`;
-            } else {
-                p.textContent = `${capitalizeFirstLetter(key)}: ${value}`;
-            }
-
-            filterInfoContent.appendChild(p);
-        });
-
-
-        // Mostrar el panel si hay filtros
-        filterInfoPanel.classList.remove('hide');
-    }
-}
 
 
 // Función para capitalizar la primera letra
@@ -573,29 +500,28 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterSelectedUsersContainer = document.getElementById('filter-selected-users');
     const filterUserIdsInput = document.getElementById('filter-user-ids');
     let filterSelectedUsers = [];
+    filterUserIdsInput.value = ''; 
     let filterCurrentFocus = -1;
 
 
 
 
     // Obtener el ID del usuario en sesión y agregarlo como seleccionado
-    const sessionUserId = document.getElementById('user-session-id').value;
-    const sessionUserCheckbox = document.getElementById(`filter-user-${sessionUserId}`);
+    //const sessionUserId = document.getElementById('user-session-id').value;
+    //const sessionUserCheckbox = document.getElementById(`filter-user-${sessionUserId}`);
 
-    if (sessionUserCheckbox) {
-        sessionUserCheckbox.checked = true;
-        const sessionUserName = sessionUserCheckbox.nextElementSibling.textContent;
+    //if (sessionUserCheckbox) {
+    //    sessionUserCheckbox.checked = true;
+    //    const sessionUserName = sessionUserCheckbox.nextElementSibling.textContent;
 
         // Añadir el usuario en sesión a la lista de seleccionados al cargar la página
-        filterSelectedUsers.push({ id: sessionUserId, name: sessionUserName });
-        updateFilterSelectedUsersDisplay();
-        updateFilterUserIdsInput();
-    }
+        // filterSelectedUsers.push({ id: sessionUserId, name: sessionUserName });
+    //    updateFilterSelectedUsersDisplay();
+    //    updateFilterUserIdsInput();
+    // }
 
     // Actualiza el panel de información del filtro para mostrar el filtro del usuario en sesión
-    updateFilterInfoPanel({
-        usuario: sessionUserId  // Define el usuario en sesión como filtro activo
-    });
+    updateFilterInfoPanel();
     // Llama a la función inicialmente para cargar el título al abrir la página
     updateSelectedUserNamesFromFilterForm();
 

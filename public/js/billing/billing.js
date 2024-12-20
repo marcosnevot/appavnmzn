@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentSortKey = ''; // Almacena la clave de ordenación actual
     let currentSortDirection = ''; // Dirección de orden actual
 
+    // Establecer los filtros iniciales
+    window.currentFilters = {
+        ...window.currentFilters,
+        estado: estado || window.currentFilters.estado || 'COMPLETADA', // Sobrescribir si viene de la URL
+
+    };
+
+
     // Cargar tareas inicialmente
     loadTasks(1, 'created_at', 'desc');
 
@@ -129,10 +137,15 @@ function loadTasks(page = 1, sortKey, sortDirection) {
         page, // Página actual
         sortKey, // Clave de ordenación
         sortDirection, // Dirección de ordenación
-        user_id: sessionUserId, // Usuario actual
+        // user_id: sessionUserId, // Usuario actual
         facturable: '1', // Usar el filtro activo o el valor predeterminado
         facturado: 'NO', // Usar el filtro activo o el valor predeterminado
+        estado:'COMPLETADA', // Predeterminado
     });
+
+ 
+
+
     fetch(`/billing/getBilling?${params.toString()}`, {
         method: 'GET',
         headers: {
@@ -144,6 +157,7 @@ function loadTasks(page = 1, sortKey, sortDirection) {
         .then(data => {
             if (data.success) {
                 loadInitialTasks(data.tasks);
+                
                 updatePagination(data.pagination, (newPage) => loadTasks(newPage, sortKey, sortDirection));
             } else {
                 console.error('Error al cargar tareas:', data.message);
@@ -207,7 +221,7 @@ function loadInitialTasks(tasks) {
         </td>
         <td>${task.users && task.users.length > 0 ? task.users.map(user => user.name).join(', ') : 'Sin asignación'}</td>
     `;
-    
+
         tableBody.appendChild(row);
 
         // Añadir el evento de doble clic a las filas de la tabla
