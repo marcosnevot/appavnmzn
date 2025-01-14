@@ -139,6 +139,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         const facturableCheckbox = document.querySelector('input[name="facturableEdit"]');
                         const facturadoInput = document.querySelector('select[name="facturadoEdit"]');
 
+                        const precioInput = document.querySelector('input[name="precioEdit"]');
+                        const suplidoInput = document.querySelector('input[name="suplidoEdit"]');
+                        const costeInput = document.querySelector('input[name="costeEdit"]');
+
                         const fechaInicioInput = document.querySelector('input[name="fecha_inicioEdit"]');
                         const fechaPlanificacionInput = document.querySelector('input[name="fecha_planificacionEdit"]');
                         const fechaVencimientoInput = document.querySelector('input[name="fecha_vencimientoEdit"]');
@@ -159,6 +163,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (observacionesTextarea) observacionesTextarea.value = task.observaciones || '';
                         if (facturableCheckbox) facturableCheckbox.checked = !!task.facturable;
                         if (facturadoInput) facturadoInput.value = task.facturado || '';
+
+                        
+                        if (precioInput) precioInput.value = task.precio || '';
+                        if (suplidoInput) suplidoInput.value = task.suplido || '';
+                        if (costeInput) costeInput.value = task.coste || '';
 
                         if (fechaPlanificacionInput) fechaPlanificacionInput.value = task.fecha_planificacion || '';
                         if (fechaInicioInput) fechaInicioInput.value = task.fecha_inicio || '';
@@ -733,6 +742,13 @@ function deleteCustomer(taskId) {
 // Función para cerrar el formulario de edición
 function closeEditCustomerForm(editTaskFormContainer) {
     if (editTaskFormContainer) {
+        // Resetear el formulario antes de cerrarlo
+        const form = editTaskFormContainer.querySelector('form');
+        if (form) {
+            form.reset();
+        }
+
+        // Ocultar el contenedor del formulario con animación
         editTaskFormContainer.classList.remove('show');
         editTaskFormContainer.classList.add('hide');
         setTimeout(() => {
@@ -740,6 +756,7 @@ function closeEditCustomerForm(editTaskFormContainer) {
         }, 400);
     }
 }
+
 
 // Función para cerrar el modal de detalles de la tarea
 function closeCustomerModal() {

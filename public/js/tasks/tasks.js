@@ -201,13 +201,13 @@ function loadTasks(page = 1, sortKey, sortDirection) {
         ...window.currentFilters, // Usar filtros activos de la variable global
         estado: window.currentFilters?.estado || 'PENDIENTE,ENESPERA', // Predeterminado
         page, // Página actual
-       // user_id: sessionUserId, // Usuario actual
+        // user_id: sessionUserId, // Usuario actual
         sortKey, // Clave de ordenación
         sortDirection, // Dirección de ordenación
 
     });
-     console.log(currentFilters); // Verifica qué se está enviando al servidor
-     updateFilterInfoPanel(currentFilters);
+    console.log(currentFilters); // Verifica qué se está enviando al servidor
+    updateFilterInfoPanel(currentFilters);
 
     fetch(`/tareas/getTasks?${params.toString()}`, {
         method: 'GET',
@@ -223,7 +223,7 @@ function loadTasks(page = 1, sortKey, sortDirection) {
                 loadInitialTasks(data.tasks);
                 updatePagination(data.pagination, (newPage) => loadTasks(newPage, sortKey, sortDirection));
                 updateHoursSummaryFromTotals(data.totalTiempoPrevisto, data.totalTiempoReal);
-                
+
 
             } else {
                 console.error('Error al cargar tareas:', data.message);
@@ -268,11 +268,11 @@ function loadInitialTasks(tasks) {
             <td>${task.fecha_vencimiento ? new Date(task.fecha_vencimiento).toLocaleDateString() : 'Sin fecha'}</td>
             <td>${task.facturable ? 'SI' : 'NO'}</td>
             <td>${task.facturado || 'NO'}</td>
+            <td>${task.precio ? task.precio : 'N/A'}</td>
             <td class="col-descripcion">${task.descripcion ? truncateText(task.descripcion, 100) : ''}</td>
             <td class="col-observaciones">${task.observaciones ? truncateText(task.observaciones, 100) : ''}</td>
             <td>${task.suplido ? task.suplido : 'N/A'}</td>
             <td>${task.coste ? task.coste : 'N/A'}</td>
-            <td>${task.precio ? task.precio : 'N/A'}</td>
             <td>
             ${task.fecha_planificacion ? formatFechaPlanificacion(task.fecha_planificacion) : 'Sin fecha'}
             </td> 

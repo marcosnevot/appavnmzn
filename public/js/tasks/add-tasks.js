@@ -828,11 +828,11 @@ function updateTaskTable(tasks, isSingleTask = false, currentFilters = null, pag
             <td>${task.fecha_vencimiento ? new Date(task.fecha_vencimiento).toLocaleDateString() : 'Sin fecha'}</td>
             <td>${task.facturable ? 'SI' : 'NO'}</td>
             <td>${task.facturado || 'NO'}</td>
+            <td>${task.precio ? task.precio : 'N/A'}</td>
             <td class="col-descripcion">${task.descripcion ? truncateText(task.descripcion, 100) : ''}</td>
             <td class="col-observaciones">${task.observaciones ? truncateText(task.observaciones, 100) : ''}</td>
             <td>${task.suplido ? task.suplido : 'N/A'}</td>
             <td>${task.coste ? task.coste : 'N/A'}</td>
-            <td>${task.precio ? task.precio : 'N/A'}</td>
             <td>
             ${task.fecha_planificacion ? formatFechaPlanificacion(task.fecha_planificacion) : 'Sin fecha'}
             </td> 
@@ -874,11 +874,11 @@ function updateSingleTaskRow(task) {
             <td>${task.fecha_vencimiento ? new Date(task.fecha_vencimiento).toLocaleDateString() : 'Sin fecha'}</td>
             <td>${task.facturable ? 'SI' : 'NO'}</td>
             <td>${task.facturado || 'NO'}</td>
+            <td>${task.precio ? task.precio : 'N/A'}</td>
             <td class="col-descripcion">${task.descripcion ? truncateText(task.descripcion, 100) : ''}</td>
             <td class="col-observaciones">${task.observaciones ? truncateText(task.observaciones, 100) : ''}</td>
             <td>${task.suplido ? task.suplido : 'N/A'}</td>
             <td>${task.coste ? task.coste : 'N/A'}</td>
-            <td>${task.precio ? task.precio : 'N/A'}</td>
             <td>
             ${task.fecha_planificacion ? formatFechaPlanificacion(task.fecha_planificacion) : 'Sin fecha'}
             </td> 
