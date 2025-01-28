@@ -55,11 +55,11 @@
 
 
 
-            <hr class="border-gray-700" >
+            <hr class="border-gray-700">
 
 
             <a href="{{ route('times.index') }}" class="menu-link {{ request()->routeIs('times.index') ? 'active' : '' }}" style="display:none">
-                <span class="menu-icon" >
+                <span class="menu-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <!-- Círculo exterior del reloj -->
                         <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
@@ -87,6 +87,20 @@
                 </span>
                 {{ __('Clientes') }}
             </a>
+
+
+            <hr class="border-gray-700">
+
+            <a href="{{ route('webmessages.index') }}"
+                class="menu-link {{ request()->routeIs('webmessages.index') ? 'active' : '' }}">
+                <span class="menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </span>
+                {{ __('Bandeja de Entrada') }}
+            </a>
+
 
         </div>
     </div>
@@ -600,7 +614,7 @@
         display: inline-block;
         min-width: 20px;
         text-align: center;
-        z-index: 1001;
+        z-index: 900;
     }
 
     .notification-panel {

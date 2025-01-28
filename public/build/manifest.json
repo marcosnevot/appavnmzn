@@ -50,6 +50,11 @@
     "file": "assets/admin.css",
     "src": "resources/css/admin.css",
     "isEntry": true
+  },
+  "resources/css/webmessages.css": {
+    "file": "assets/webmessages.css",
+    "src": "resources/css/webmessages.css",
+    "isEntry": true
   }
 
 }

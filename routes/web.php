@@ -6,6 +6,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskExportController;
+use App\Http\Controllers\WebMessagesController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Broadcast;
@@ -102,6 +103,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/clientes/{id}', [ClientController::class, 'update'])->name('clients.update');
     Route::post('/clientes/export', [ClientController::class, 'exportFilteredCustomers'])->name('clientes.export');
     Route::post('/clientes/emails', [ClientController::class, 'fetchEmails'])->name('clientes.fetchEmails');
+
+
+    Route::get('/webmessages', [WebMessagesController::class, 'index'])->name('webmessages.index');
+
 });
 
 require __DIR__ . '/auth.php';
