@@ -60,7 +60,7 @@
         <div class="form-row">
             <div class="form-group narrow">
                 <label for="facturable">Facturable:</label>
-                <input type="checkbox" name="facturable" id="facturable" value="1">
+                <input type="checkbox" name="facturable" id="facturable" value="1" checked>
             </div>
 
             <div class="form-group grow">

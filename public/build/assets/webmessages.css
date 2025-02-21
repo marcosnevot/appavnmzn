@@ -271,10 +271,10 @@
     color: var(--color-text-muted);
     line-height: 1.5;
     margin: 0;
-    max-height: 4.5rem;
+    /* max-height: 4.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: nowrap; */
 }
 
 /* Footer styles */
